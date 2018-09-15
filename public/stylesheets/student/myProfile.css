@@ -1,0 +1,41 @@
+.my-profile{
+  max-width: 40%;
+  border: 1px solid #dbe2e8;
+  box-shadow: 2px 2px 3px 0 rgba(117, 124, 129, 0.12);
+  background: #fff;
+}
+
+.profile{
+  padding: 50px;
+}
+.job, .dates, .row{
+  display: flex;
+}
+.row, table {
+  width: 100%;
+}
+input[name='job_type'], input[name='start_date']{
+    margin-right: 10px;
+    width: 50%;
+}
+input[name='job_title'], input[name='end_date']{
+    width: 50%;
+}
+
+.label{
+  width: 30%;
+}
+
+#sDate{
+  margin-right: 10px;
+  width: 50%;
+}
+#eDate{
+  width: 50%;
+}
+
+.project{
+  border: 0.5px solid #3f87a6;
+  box-shadow: 1px 1px 1.5px 0 rgba(117, 124, 129, 0.12);
+  background: #fff;
+}

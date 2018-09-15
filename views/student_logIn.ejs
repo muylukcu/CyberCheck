@@ -1,0 +1,24 @@
+<%- include('home_layout'); -%>
+<div class="container">
+<div class="main-section">
+  <div class="signUp-logIn-cont">
+    <a class="signUp-logIn" href="/" id="sign-in">Sign Up</a>
+    <a class="signUp-logIn" href="/login" id="log-in">Log In</a>
+  </div>
+  <div>
+    <div class="form-container">
+      <div class="form-header">Sign In to your account</div>
+      <form method="post" action="profile">
+          <div class = "email-section inputs">
+            <input type="email" name="email" placeholder='Email*'>
+          </div>
+          <div class="inputs">
+            <input type="password"  placeholder='Password*' name="password_logIn">
+          </div>
+        <button id="sign-up-button" type="submit">Sign In</button>
+      </form>
+    </div>
+  </div>
+</div>
+</div>
+<script src="javascripts/homepage/clientSideStudent.js"></script>

@@ -1,0 +1,79 @@
+<%- include('students_layout'); -%>
+
+<div class="my-profile">
+  <div class="profile">
+    <h2><%= student.firstname %> <%= student.lastname %></h2>
+    <h4><%= student.study_course %> Batch: <%= student.batch_number %> </h4>
+  </div>
+    <% projects.forEach(function(project){ %>
+  <div class="project profile">
+    <table>
+    <tr class = "row">
+      <td class="label">Company:</td>
+      <td><strong><%= project.company_name%></strong></td>
+    </tr>
+
+    <tr class="row">
+      <td class="label">Address:</td>
+      <td><%= project.company_location%></td>
+    </tr>
+
+    <tr class="row">
+      <td class="label">Team:</td>
+      <td><%= project.team_size%></td>
+    </tr>
+
+    <tr class="row">
+      <td class="label">Start Date:</td>
+      <td><%= project.start_work_date %></td>
+    </tr>
+
+    <tr class="row">
+      <td class="label">End Date:</td>
+      <td><%= project.end_work_date%></td>
+    </tr>
+  </table>
+  </div>
+   <% }); %>
+</div>
+<div class="my-profile">
+<div >
+  <div class="form-container">
+    <div class="form-header">Add you projects from your resume</div>
+    <div class="form-description">First you need to add into your profile all projects after that you will be able to send requests. Your project information will be used for requesting references. Make sure all data correct!</div>
+    <form method="post" action="/profile/add_project">
+       <div class="form-inputs">
+         <div class="inputs">
+          <input  name="company_name" placeholder='Company Name*'>
+        </div>
+        <div class = "inputs">
+          <input name="company_location" placeholder='Company Address*'>
+        </div>
+        <div class="inputs job">
+          <input name="job_type" placeholder='Job Type* ex: Contructor'>
+          <input name="job_title" placeholder='Job Title*'>
+        </div>
+        <div class="inputs">
+          <input name="team_size" placeholder='Team Size* ex: 8 total (3 Dev, 3 Test, 1 BA, 1 PO)'>
+        </div>
+        <div class="inputs dates">
+          <div id="sDate">
+            <label  for="start_date">Start Date</label>
+          </div>
+          <div id="eDate">
+            <label  class="labels" for="end_date">End Date</label>
+          </div>
+        </div>
+        <div class="inputs dates">
+          <input name="start_date" type="date" placeholder='Start Date* MM/DD/YYYY'>
+          <input name="end_date" type="date" placeholder='End Date* MM/DD/YYYY'>
+        </div>
+      </div>
+      <button id="sign-up-button" type="submit">Add Project</button>
+    </form>
+  </div>
+</div>
+</div>
+
+
+<script src="../javascripts/student/student-area-profile.js"></script>

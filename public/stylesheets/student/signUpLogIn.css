@@ -1,0 +1,126 @@
+.main-section{
+    max-width: 520px;
+    margin-left: auto;
+    margin-right: auto;
+    border: 1px solid #dbe2e8;
+    box-shadow: 2px 2px 3px 0 rgba(117, 124, 129, 0.12);
+    background: #fff;
+}
+.container{
+    padding: 70px 40px;
+}
+.signUp-logIn-cont{
+  display: flex;
+}
+.signUp-logIn{
+  width: 50%;
+  flex: auto;
+  padding: 15px;
+  text-align: center;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  font-size: 14px;
+  box-shadow: none;
+  background: #fff;
+  color: #2e3d49;
+  font: 400 13.3333px Arial;
+  font-weight: bold;
+  border: none;
+  border-bottom:1px solid #dbe2e8;
+}
+#sig-in{
+  border-right:1px solid #dbe2e8;
+}
+#log-in{
+  border-left:1px solid #dbe2e8;
+}
+.form-header{
+  font-size: 24px;
+  font-weight: 300;
+  line-height: 1.3;
+  color: #2e3d49;
+  text-align: left;
+}
+.form-container{
+  padding: 50px;
+}
+.form-description{
+    font-size: 12px;
+    line-height: 1.6;
+    color: #525c65;
+    max-width: 460px;
+    margin: 20px 0;
+    text-align: left;
+}
+input{
+  height: 40px;
+  box-sizing: border-box;
+  padding-left: 15px;
+  padding-right: 15px;
+  border: 1px solid #dbe2e8;
+  font-size: 14px;
+  box-shadow: 0 2px 2px 0 rgba(46, 60, 73, 0.05);
+  border-radius: 2px;
+  color: #2e3d49;
+  width:100%;
+}
+
+.inputs{
+    padding-top:10px;
+}
+.full-name, .study-course, .credentials{
+  display: flex;
+}
+
+input[name='first_name'], input[name='last_name']{
+  width:40%;
+  margin-right: 10px;
+}
+
+input[name='gender']{
+    width:20%;
+}
+input[name='course']{
+    width: 80%;
+    margin-right: 10px;
+}
+input[name='batch_number']{
+    width: 20%;
+}
+input[name='password']{
+    margin-right: 10px;
+    width: 50%;
+}
+input[name='confirm-password']{
+    width: 50%;
+}
+
+#sign-up-button{
+  cursor: pointer;
+  width: 100%;
+  padding: 1.2em 4em;
+  background: #02b3e4;
+  border: none;
+  border-radius: 4px;
+  box-shadow: 12px 15px 20px rgba(0, 0, 0, 0.1);
+  color: #fff;
+  cursor: pointer;
+  display: inline-block;
+  font-family: 'Open Sans', sans-serif;
+  font-size: 12px;
+  font-weight: 600;
+  -webkit-font-smoothing: antialiased;
+  letter-spacing: 0.165em;
+  max-width: 100%;
+  overflow: hidden;
+  text-align: center;
+  text-overflow: ellipsis;
+  text-transform: uppercase;
+  transition: 0.2s box-shadow ease-in-out, 0.2s background-color ease-in-out, 0.2s border-color ease-in-out;
+  white-space: nowrap;
+  margin-top:20px;
+}
+
+.email-section{
+  padding-top:20px;
+}

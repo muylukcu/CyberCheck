@@ -1,0 +1,11 @@
+<div>
+   <h1 id="title"><%= title %></h1>
+  <ul>
+    <% student_list.forEach(function(student){ %>
+     <li>
+      <a href = <%- student.url %>?id=<%= student.id %> > <%- student.firstname %> <%-student.lastname%></a>
+     </li>
+     <% }); %>
+  </ul>
+</div>
+<script src="javascripts/student/student-area-profile.js"></script>
