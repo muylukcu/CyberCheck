@@ -3,7 +3,7 @@ var express = require('express');
 var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
-
+var cookieSession = require('cookie-session');
 var indexRouter = require('./routes/index');
 //var usersRouter = require('./routes/users');
 
@@ -24,9 +24,15 @@ app.set('view engine', 'ejs');
 app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
-app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(cookieParser());
+app.use(cookieSession({
+  name: 'session',
+  keys: ['key1','key2'],
+  // Cookie Options
+  maxAge: 24 * 60 * 60 * 1000 // 24 hours
+}))
+
 app.use('/', indexRouter);
 //app.use('/users', usersRouter);
 
@@ -34,6 +40,7 @@ app.use('/', indexRouter);
 app.use(function(req, res, next) {
   next(createError(404));
 });
+//app.set('trust proxy', 1) // trust first proxy
 
 
 // error handler

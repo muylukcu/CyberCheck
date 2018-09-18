@@ -1,6 +1,5 @@
 var Student = require('../models/student');
 var Project = require('../models/project');
-
 var async = require('async');
 var cookieParser = require('cookie-parser');
 const { body,validationResult } = require('express-validator/check');
@@ -44,7 +43,14 @@ exports.student_create_post = function(req, res, next){
                   var token = jwt.sign({ id: student._id }, config.secret, {
                     expiresIn: 86400 // expires in 24 hours
                   });
-                  res.redirect(student.url);
+                  var cookie = req.session.token;
+                  if (!cookie) {
+                  //  res.cookie('token', token, { maxAge: 86400, httpOnly: true });
+                      req.session.token = token;
+                  } else {
+                     console.log('Valid cookies');
+                  }
+                  res.redirect('/student_profile');
               });
           }
 //Student Area - Profile
@@ -76,15 +82,22 @@ exports.student_logIn = function(req, res) {
     if (!passwordIsValid){
        return res.status(401).send({ auth: false, token: null });
      }
-    var token = jwt.sign({ id: user._id }, config.secret, {
-      expiresIn: 86400 // expires in 24 hours
-    });
 
-      var cookie = req.cookies.token;
+        var token =
+        {
+           userId : jwt.sign({ id: user._id }, config.secret, {
+          expiresIn: 86400 // expires in 24 hours
+        })
+        }
+
+
+
+      var cookie = req.session.token;
+
       if (!cookie) {
-        res.cookie('token', token, { maxAge: 86400, httpOnly: true });
+          req.session = token;
       } else {
-         console.log('Valid cookies');
+         console.log('Valid cookie session');
       }
 
       res.status(200).redirect('/student_profile');
@@ -92,10 +105,14 @@ exports.student_logIn = function(req, res) {
 };
 
 exports.student_profile = function(req, res){
-  var token = req.cookies.token;
-  if (!token) return res.status(401).send({ auth: false, message: 'No token provided.' });
+  var token = req.session.userId;
+  if (!token){
+    return res.status(401).send({ auth: false, message: 'No token provided.' });
+  }
   jwt.verify(token, config.secret, function(err, decoded) {
-         if (err) return res.status(500).send({ auth: false, message: 'Failed to authenticate token.' });
+         if (err){
+           return res.status(500).send({ auth: false, message: 'Failed to authenticate token.' });
+         }
          async.parallel({
            student: function(callback){
              Student.findById(decoded.id,{password:0}).exec(callback);

@@ -5,13 +5,11 @@ var config = require('../config');
 var cookieParser = require('cookie-parser');
 
 exports.project_create = function(req, res, next){
-  var token = req.cookies.token;
+  var token = req.session.userId;
   if (!token) return res.status(401).send({ auth: false, message: 'No token provided.' });
 
   jwt.verify(token, config.secret, function(err, decoded) {
     if (err) return res.status(500).send({ auth: false, message: 'Failed to authenticate token.' });
-      console.log('START: ' + req.body.start_date);
-      console.log('END: ' + req.body.end_date);
       var project = new Project(
          {
            student: decoded.id,
