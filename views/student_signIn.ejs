@@ -2,14 +2,14 @@
 <div class="container">
 <div class="main-section">
   <div class="signUp-logIn-cont">
-    <a class="signUp-logIn" href="/" id="sign-in">Sign Up</a>
-    <a class="signUp-logIn" href="/login" id="log-in">Log In</a>
+    <button class="signUp-logIn" onclick="location.href='/';" id="sign-in">Sign Up</button>
+    <button class="signUp-logIn" onclick="location.href='/login';"  id="log-in">Log In</button>
   </div>
   <div>
     <div class="form-container">
       <div class="form-header">Create your student account</div>
       <div class="form-description">Your student account information will be use for requesting references. Make sure all data correct</div>
-      <form method="post" action="">
+      <form id="signUp-form" method="post" action="">
          <div class="form-inputs">
            <div class="inputs full-name">
             <input  name="first_name" placeholder='First Name*'>
@@ -28,7 +28,7 @@
             <input type="password" name="confirm-password" placeholder='Confirm Password*'>
           </div>
         </div>
-        <button id="sign-up-button" type="submit">Sign Up</button>
+        <button id="sign-up-button" onclick="submitSignInForm()">Sign Up</button>
       </form>
     </div>
   </div>

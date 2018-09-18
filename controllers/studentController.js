@@ -27,6 +27,7 @@ exports.student_signIn_form = function(req, res, next) {
 
 // Needs to fixed Not sending token
 exports.student_create_post = function(req, res, next){
+              req.session = null;
               var hashedPassword = bcrypt.hashSync(req.body.password, 8);
               var student = new Student(
                   {
@@ -40,16 +41,13 @@ exports.student_create_post = function(req, res, next){
                   });
               student.save(function (err,student) {
                   if (err) return res.status(500).send("There was a problem registering the student.")
-                  var token = jwt.sign({ id: student._id }, config.secret, {
-                    expiresIn: 86400 // expires in 24 hours
-                  });
-                  var cookie = req.session.token;
-                  if (!cookie) {
-                  //  res.cookie('token', token, { maxAge: 86400, httpOnly: true });
-                      req.session.token = token;
-                  } else {
-                     console.log('Valid cookies');
+                  var token =
+                  {
+                     userId : jwt.sign({ id: student._id }, config.secret, {
+                     expiresIn: 86400 // expires in 24 hours
+                  })
                   }
+                  req.session = token;
                   res.redirect('/student_profile');
               });
           }
