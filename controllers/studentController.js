@@ -25,8 +25,8 @@ exports.student_signIn_form = function(req, res, next) {
     res.render('student_signIn', { title: 'SignIn Student'});
 };
 
-// Needs to fixed Not sending token
 exports.student_create_post = function(req, res, next){
+              // asign session to null if any exist
               req.session = null;
               var hashedPassword = bcrypt.hashSync(req.body.password, 8);
               var student = new Student(
@@ -51,15 +51,6 @@ exports.student_create_post = function(req, res, next){
                   res.redirect('/student_profile');
               });
           }
-//Student Area - Profile
-exports.student_area = function(req,res,next){
-  console.log(req.body.id);
-  Student.findByIdAndRemove(req.body.id, function deleteStudent(err) {
-    if (err) { return next(err); }
-    // Success - go to author list.
-    res.redirect('/students');
-});
-}
 
 // Student Area - requests
 exports.students_requests = function(req,res,next){

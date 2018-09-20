@@ -12,20 +12,14 @@ router.use(bodyParser.json());
 
 /*  home page. Student */
 router.get('/', student_controller.student_signIn_form);
-
 router.post('/',student_controller.student_create_post);
-
 router.get('/students',  student_controller.student_list);
-
-router.get('/student/:id',student_controller.student_area);
-
-//Add Project into Student profile
-router.post('/profile/add_project', project_controller.project_create);
-
 router.get('/login',student_controller.student_logIn_page);
-
 router.post('/profile',student_controller.student_logIn);
 router.get('/student_profile',student_controller.student_profile);
+// Project into Student profile
+router.post('/profile/add_project', project_controller.project_create);
+router.get('/profile/remove_project',project_controller.remove_project);
 
 // Old Friend
 router.get('/old_friends',oldFriend_controller.old_friends_sigIn);

@@ -18,7 +18,7 @@ exports.project_create = function(req, res, next){
            job_title: req.body.job_title,
            job_type: req.body.job_type,
            team_size: req.body.team_size,
-           stard_date: req.body.start_date,
+           start_date: req.body.start_date,
            end_date: req.body.end_date
          }
        );
@@ -29,7 +29,21 @@ exports.project_create = function(req, res, next){
         res.redirect('/student_profile');
        });
   });
+}
 
+//Student Area - Remove Project
+exports.remove_project = function(req,res,next){
+  var token = req.session.userId;
+  if (!token) return res.status(401).send({ auth: false, message: 'No token provided.' });
 
+    jwt.verify(token, config.secret, function(err, decoded) {
+       if (err) return res.status(500).send({ auth: false, message: 'Failed to authenticate token.' });
+           var company_name = req.query.company_name;
+           Project.deleteOne({"student":decoded.id}).where('company_name').equals(company_name).exec(function(err){
+             if (err) { return next(err); }
+             // Success - go to profile.
+             res.redirect('/student_profile');
+            });
 
+    });
 }

@@ -1,5 +1,5 @@
 <%- include('students_layout'); -%>
-
+<div class="main-section">
 <div class="my-profile">
   <div class="profile">
     <h2><%= student.firstname %> <%= student.lastname %></h2>
@@ -7,12 +7,16 @@
   </div>
     <% projects.forEach(function(project){ %>
   <div class="project profile">
+    <a id="remove" class="fa fa-remove" href= '/profile/remove_project?company_name=<%=project.company_name %>'></a>
     <table>
     <tr class = "row">
       <td class="label">Company:</td>
       <td><strong><%= project.company_name%></strong></td>
     </tr>
-
+    <tr class = "row">
+      <td class="label">Title:</td>
+      <td><%= project.job_title%> (<%= project.job_type %>)</td>
+    </tr>
     <tr class="row">
       <td class="label">Address:</td>
       <td><%= project.company_location%></td>
@@ -24,20 +28,14 @@
     </tr>
 
     <tr class="row">
-      <td class="label">Start Date:</td>
-      <td><%= project.start_work_date %></td>
-    </tr>
-
-    <tr class="row">
-      <td class="label">End Date:</td>
-      <td><%= project.end_work_date%></td>
+      <td class="label">Duration:</td>
+      <td><%= project.start_work_date %> - <%= project.end_work_date%></td>
     </tr>
   </table>
   </div>
    <% }); %>
-</div>
-<div class="my-profile">
-<div >
+
+<div class="add-project-form">
   <div class="form-container">
     <div class="form-header">Add you projects from your resume</div>
     <div class="form-description">First you need to add into your profile all projects after that you will be able to send requests. Your project information will be used for requesting references. Make sure all data correct!</div>
@@ -73,7 +71,10 @@
     </form>
   </div>
 </div>
+<div id="display-form-button">
+  <button class="project-add-button" onclick="addOneMoreProject()">Add one more project</button>
+<div>
 </div>
-
+</div>
 
 <script src="../javascripts/student/student-area-profile.js"></script>
