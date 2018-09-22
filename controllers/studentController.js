@@ -8,6 +8,7 @@ const { sanitizeBody } = require('express-validator/filter');
 var jwt = require('jsonwebtoken');
 var bcrypt = require('bcryptjs');
 var config = require('../config');
+
 //Display list of all students
 exports.student_list = function(req,res,next){
 
@@ -63,7 +64,11 @@ exports.student_logIn_page = function(req, res, next) {
     res.render('student_logIn', { title: 'LogIn Student'});
 };
 
+
 exports.student_logIn = function(req, res) {
+  // asign session to null if any exist
+  req.session = null;
+
   Student.findOne({ email: req.body.email }, function (err, user) {
     if (err) return res.status(500).send('Error on the server.');
     if (!user) return res.status(404).send('No user found.');
@@ -79,9 +84,7 @@ exports.student_logIn = function(req, res) {
         })
         }
 
-
-
-      var cookie = req.session.token;
+      var cookie = req.session;
 
       if (!cookie) {
           req.session = token;

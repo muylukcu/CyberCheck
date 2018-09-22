@@ -28,7 +28,7 @@ body{
 .row, table {
   width: 100%;
 }
-input[name='job_type'], input[name='start_date']{
+#select-job-type, input[name='start_date']{
     margin-right: 10px;
     width: 50%;
 }
@@ -84,4 +84,8 @@ input[name='job_title'], input[name='end_date']{
   white-space: nowrap;
   margin-top:20px;
   margin-bottom:20px;
+}
+
+.course-text{
+  text-transform:uppercase;
 }

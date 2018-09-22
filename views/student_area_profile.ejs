@@ -3,7 +3,7 @@
 <div class="my-profile">
   <div class="profile">
     <h2><%= student.firstname %> <%= student.lastname %></h2>
-    <h4><%= student.study_course %> Batch: <%= student.batch_number %> </h4>
+    <h4 class="course-text"><%= student.study_course %> Batch: <%= student.batch_number %> </h4>
   </div>
     <% projects.forEach(function(project){ %>
   <div class="project profile">
@@ -29,7 +29,7 @@
 
     <tr class="row">
       <td class="label">Duration:</td>
-      <td><%= project.start_work_date %> - <%= project.end_work_date%></td>
+      <td><%= project.start_date %> - <%= project.end_date%></td>
     </tr>
   </table>
   </div>
@@ -48,7 +48,11 @@
           <input name="company_location" placeholder='Company Address*'>
         </div>
         <div class="inputs job">
-          <input name="job_type" placeholder='Job Type* ex: Contructor'>
+          <!-- <input name="job_type" placeholder='Job Type* ex: Contructor'> -->
+          <select name="job_type" id="select-job-type">
+            <option value="contructor">contructor</option>
+            <option value="full-time employee">full-time employee</option>
+          </select>
           <input name="job_title" placeholder='Job Title*'>
         </div>
         <div class="inputs">
@@ -63,8 +67,40 @@
           </div>
         </div>
         <div class="inputs dates">
-          <input name="start_date" type="date" placeholder='Start Date* MM/DD/YYYY'>
-          <input name="end_date" type="date" placeholder='End Date* MM/DD/YYYY'>
+          <div class="section-date">
+             <select class="month" name="start_month">
+               <option value="January">January</option>
+               <option value="February">February</option>
+               <option value="March">March</option>
+               <option value="April">April</option>
+               <option value="May">May</option>
+               <option value="June">June</option>
+               <option value="July">July</option>
+               <option value="August">August</option>
+               <option value="September">September</option>
+               <option value="October">October</option>
+               <option value="November">November</option>
+               <option value="December">December</option>
+             </select>
+             <select class="year" name="start_year" style="margin-right: 5px;"></select>
+          </div>
+          <div class="section-date">
+             <select class="month" name="end_month" style="margin-left: 4px;">
+                <option value="January">January</option>
+                <option value="February">February</option>
+                <option value="March">March</option>
+                <option value="April">April</option>
+                <option value="May">May</option>
+                <option value="June">June</option>
+                <option value="July">July</option>
+                <option value="August">August</option>
+                <option value="September">September</option>
+                <option value="October">October</option>
+                <option value="November">November</option>
+                <option value="December">December</option>
+             </select>
+             <select class="year" name="end_year"></select>
+          </div>
         </div>
       </div>
       <button id="sign-up-button" type="submit">Add Project</button>

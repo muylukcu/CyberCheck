@@ -10,6 +10,9 @@ exports.project_create = function(req, res, next){
 
   jwt.verify(token, config.secret, function(err, decoded) {
     if (err) return res.status(500).send({ auth: false, message: 'Failed to authenticate token.' });
+      var startDate = req.body.start_month + ' ' + req.body.start_year ;
+      var endDate = req.body.end_month + ' ' + req.body.end_year ;
+
       var project = new Project(
          {
            student: decoded.id,
@@ -18,8 +21,8 @@ exports.project_create = function(req, res, next){
            job_title: req.body.job_title,
            job_type: req.body.job_type,
            team_size: req.body.team_size,
-           start_date: req.body.start_date,
-           end_date: req.body.end_date
+           start_date: startDate,
+           end_date: endDate
          }
        );
 

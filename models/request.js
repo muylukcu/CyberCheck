@@ -9,7 +9,8 @@ var RequestSchema = new Schema(
     recruiter_number : {type: String,required: true},
     recruiter_company: {type: String, required: true},
     project: {type: Schema.Types.ObjectId, ref: 'Project',required: true},
-    status: {type: String, required: true, enum: ['Open', 'Assigned','By Student', 'Close'], default: 'Open'},
+    status: {type: String, required: true, enum: ['Open', 'Assigned', 'Close'], default: 'Open'},
+    // assigned to Old Friend
     assigned_to: {type: String, required: true},
     end_client_company: {type:String,required: true},
     reference_name: {type:String},

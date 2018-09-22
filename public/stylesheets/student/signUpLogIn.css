@@ -65,6 +65,34 @@ input{
   color: #2e3d49;
   width:100%;
 }
+#gender-select,#select-job-type{
+  height: 40px;
+  box-sizing: border-box;
+  padding-left: 12px;
+  padding-right: 12px;
+  border: 1px solid #dbe2e8;
+  font-size: 14px;
+  box-shadow: 0 2px 2px 0 rgba(46, 60, 73, 0.05);
+  border-radius: 2px;
+  color: #2e3d49;
+  width:100%;
+}
+.month,.year{
+  height: 40px;
+  box-sizing: border-box;
+  padding-left: 12px;
+  padding-right: 12px;
+  border: 1px solid #dbe2e8;
+  font-size: 14px;
+  box-shadow: 0 2px 2px 0 rgba(46, 60, 73, 0.05);
+  border-radius: 2px;
+  color: #2e3d49;
+  width:50%;
+}
+
+#gender-select{
+  width:20%;
+}
 
 .inputs{
     padding-top:10px;
@@ -78,9 +106,9 @@ input[name='first_name'], input[name='last_name']{
   margin-right: 10px;
 }
 
-input[name='gender']{
+/* select[name='gender']{
     width:20%;
-}
+} */
 input[name='course']{
     width: 80%;
     margin-right: 10px;
@@ -124,4 +152,8 @@ input[name='confirm-password']{
 
 .email-section{
   padding-top:20px;
+}
+.section-date{
+  display: flex;
+  width: 50%;
 }
