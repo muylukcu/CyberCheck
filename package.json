@@ -1,7 +1,7 @@
 {
   "name": "cyber-check",
   "version": "0.0.0",
-  "private": true,
+  "license" : "MIT",
   "scripts": {
     "start": "node ./bin/www",
     "devstart": "nodemon ./bin/www"
@@ -23,5 +23,8 @@
   },
   "devDependencies": {
     "nodemon": "^1.18.4"
-  }
+  },
+  "engines": {
+    "node": "8.11.4"
+  },
 }
