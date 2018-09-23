@@ -7,13 +7,13 @@
   <link rel='stylesheet' href='/stylesheets/student/signUpLogIn.css' />
   <link rel='stylesheet' href='/stylesheets/student/myProfile.css' />
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700,400italic" as="style" onload="this.onload=null;this.rel='stylesheet'">
-   <link rel="stylesheet prefetch" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.1/css/font-awesome.min.css">
+  <link rel="stylesheet prefetch" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.1/css/font-awesome.min.css">
 </head>
   <body>
     <header class="topnav">
-      <a id="profile-link" class="links active" href=<%- student.url %>>My Profile</a>
+      <a id="profile-link" class="links active" href="/student_profile">My Profile</a>
       <!-- student requests is temprory since request href will be based on student id -->
-      <a id="students-request-link" class="links" href=<%- student.url %>>My Requests</a>
+      <a id="students-request-link" class="links" href="/student_request">My Requests</a>
     </header>
     <script src="../javascripts/clientSideApp.js"></script>
   </body>

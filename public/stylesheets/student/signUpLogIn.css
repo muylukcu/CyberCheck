@@ -65,7 +65,7 @@ input{
   color: #2e3d49;
   width:100%;
 }
-#gender-select,#select-job-type{
+#gender-select,#select-job-type, #request-for-project{
   height: 40px;
   box-sizing: border-box;
   padding-left: 12px;
