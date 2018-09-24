@@ -17,7 +17,7 @@ exports.student_list = function(req,res,next){
     .exec(function(err, list_students){
       if(err){return next(err); }
       // Successful, so render
-      res.render('students',{title: 'Students',student_list: list_students});
+      res.render('students',{title: 'James',student_list: list_students});
     });
 };
 

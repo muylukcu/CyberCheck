@@ -14,7 +14,9 @@ router.use(bodyParser.json());
 /*  home page. Student */
 router.get('/', student_controller.student_signIn_form);
 router.post('/',student_controller.student_create_post);
+
 router.get('/students',  student_controller.student_list);
+
 router.get('/login',student_controller.student_logIn_page);
 router.post('/profile',student_controller.student_logIn);
 

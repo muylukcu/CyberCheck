@@ -12,13 +12,10 @@ var RequestSchema = new Schema(
     project: {type: Schema.Types.ObjectId, ref: 'Project',required: true},
     status: {type: String, required: true, enum: ['Open', 'Assigned', 'Close'], default: 'Open'},
     // assigned to Old Friend
-    assigned_to: {type: Schema.Types.ObjectId, ref: 'OldFriend'},
+    assigned_to: {type: Schema.Types.ObjectId, ref: 'CybertekTeam'},
     end_client_company: {type:String,required: true},
     reference_designation: {type:String},
-    // reference_name: {type:String},
-    // reference_phone: {type:String},
-    // reference_designation: {type:String},
-    // reference_email:{type:String}
+    open_date: {type: Date}
   }
 );
 
