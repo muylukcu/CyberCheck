@@ -21,7 +21,7 @@ exports.student_list = function(req,res,next){
     });
 };
 
-// Create new Student
+// Display student signUp form
 exports.student_signIn_form = function(req, res, next) {
     res.render('student_signIn', { title: 'SignIn Student'});
 };
