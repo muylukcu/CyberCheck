@@ -39,7 +39,7 @@
   <div class="form-container">
     <div class="form-header">Add you projects from your resume</div>
     <div class="form-description">First you need to add into your profile all projects after that you will be able to send requests. Your project information will be used for requesting references. Make sure all data correct!</div>
-    <form method="post" action="/profile/add_project">
+    <form id="add-project-form" method="post" action="/profile/add_project">
        <div class="form-inputs">
          <div class="inputs">
           <input  name="company_name" placeholder='Company Name*'>
@@ -103,7 +103,7 @@
           </div>
         </div>
       </div>
-      <button id="sign-up-button" type="submit">Add Project</button>
+      <button id="sign-up-button" onclick="submitProjectForm()">Add Project</button>
     </form>
   </div>
 </div>

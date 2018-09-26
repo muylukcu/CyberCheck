@@ -12,12 +12,12 @@ router.use(bodyParser.urlencoded({ extended: false }));
 router.use(bodyParser.json());
 
 /*  home page. Student */
-router.get('/', student_controller.student_signIn_form);
-router.post('/',student_controller.student_create_post);
+router.get('/', student_controller.student_logIn_page);
+router.post('/signUp',student_controller.student_create_post);
 
 router.get('/students',  student_controller.student_list);
 
-router.get('/login',student_controller.student_logIn_page);
+router.get('/signUp',student_controller.student_signIn_form);
 router.post('/profile',student_controller.student_logIn);
 
 // Main student profile controller. Thats populate all projects and student information

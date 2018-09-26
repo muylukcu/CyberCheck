@@ -1,5 +1,6 @@
 <%- include('students_layout'); -%>
-<script src="../javascripts/student/student-area-profile.js"></script>
+<script src="../javascripts/student/student-request-profile.js"></script>
+
 <div class="main-section">
 <div class="my-profile">
 <h1>Your References</h1>
@@ -54,7 +55,7 @@
   <div class="form-container">
     <div class="form-header">Request Reference from your projects</div>
     <div class="form-description">First you need to add into your profile all projects. After that you will be able to send requests. To request reference you need fill form bellow. Make sure all data is correct.</div>
-    <form method="post" action="/student_send_request">
+    <form id="open-reference-form" method="post" action="/student_send_request">
        <div class="form-inputs">
          <div class="inputs">
            <div id="sDate" style="padding-bottom: 4px;">
@@ -87,17 +88,9 @@
           <input name="end_client_company" placeholder='End Client Company*'>
         </div>
       </div>
-      <button id="sign-up-button" type="submit">Open Request</button>
+      <button id="sign-up-button" onclick="submitReferenceForm()">Open Request</button>
     </form>
   </div>
 </div>
 </div>
 </div>
-<!-- <div class="inputs dates">
-  <div id="sDate">
-    <label  for="start_date">Start Date</label>
-  </div>
-  <div id="eDate">
-    <label  class="labels" for="end_date">End Date</label>
-  </div>
-</div> -->
