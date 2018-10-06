@@ -1,3 +1,4 @@
+<%- include('home_layout'); -%>
 <!doctype html>
 <html lang="en">
 <head>
@@ -10,11 +11,11 @@
   <link rel="stylesheet prefetch" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.1/css/font-awesome.min.css">
 </head>
   <body>
-    <header class="topnav">
+    <div class="topnav-student">
       <a id="profile-link" class="links active" href="/student_profile">My Profile</a>
       <!-- student requests is temprory since request href will be based on student id -->
       <a id="students-request-link" class="links" href="/student_request">Request Reference</a>
-    </header>
+    </div>
     <script src="../javascripts/clientSideApp.js"></script>
   </body>
 </html>

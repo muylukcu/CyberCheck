@@ -1,7 +1,8 @@
 body{
     /* background: #ffffff url('../../images/geometry2.png'); */
 }
-.topnav{
+
+.topnav-student{
    width: 100%;
    max-width: 600px;
    margin-left: auto;
