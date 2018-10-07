@@ -1,6 +1,30 @@
-cleanUpLinks(links);
-const student = document.querySelector('#student-link');
-student.setAttribute('class','links active');
+// cleanUpLinks(links);
+// const student = document.querySelector('#student-link');
+// student.setAttribute('class','links active');
+
+function submitLogInForm(){
+  var form = document.getElementById('logIn-form');
+  var email = document.querySelector('[name="email"]');
+  var password = document.querySelector('[name="password"]');
+  var cybertekTeamFlag = document.querySelector('#flag').checked;
+  var flag = true;
+
+  if(email.value === ''){
+    email.setCustomValidity("Email cannot be empty");
+    flag = false;
+  }else{
+    email.setCustomValidity("");
+  }
+
+
+  if(flag && cybertekTeamFlag){
+    form.setAttribute('action','admin');
+    form.submit();
+  }else if(flag){
+    form.submit();
+  }
+
+}
 
 function submitSignInForm(){
   var firstName = document.querySelector('[name="first_name"]');

@@ -6,35 +6,15 @@ body {
 /* -webkit-font-smoothing: antialiased; */
 }
 
-.topnav-student a {
-    float: left;
-    color: #525c65;
-    text-align: center;
-    padding: 14px 16px;
-    text-decoration: none;
-    font-size: 17px;
-}
-
-.topnav-student {
-    background: #fff;
-    overflow: hidden;
-    box-shadow: 0 5px 15px 0 rgba(46, 61, 73, 0.12);
-}
-
-
-.topnav-student a:hover {
-    background-color: #ddd;
-    color: black;
-}
-
-/* Add a color to the active/current link */
-.topnav-student a.active {
-    background-color: #f4f4ef;
-}
-
 .logo{
   width: 15%;
   padding-top: 1%;
   padding-bottom: 1%;
   padding-left: 0.8%;
+}
+
+.topnav-student, header {
+  background: #fff;
+  overflow: hidden;
+  box-shadow: 0 5px 15px 0 rgba(46, 61, 73, 0.12);
 }

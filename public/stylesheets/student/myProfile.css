@@ -3,6 +3,7 @@ body{
 }
 
 .topnav-student{
+   margin-top: 2%;
    width: 100%;
    max-width: 600px;
    margin-left: auto;
@@ -10,7 +11,24 @@ body{
    border: 1px solid #dbe2e8;
    box-shadow: 2px 2px 3px 0 rgba(117, 124, 129, 0.12);
 }
+.topnav-student a {
+    float: left;
+    color: #525c65;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+    font-size: 17px;
+}
 
+.topnav-student a:hover {
+    background-color: #ddd;
+    color: black;
+}
+
+/* Add a color to the active/current link */
+.topnav-student a.active {
+    background-color: #f4f4ef;
+}
 .my-profile{
   width: 96%;
   background: #fff;

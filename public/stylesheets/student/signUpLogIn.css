@@ -8,7 +8,7 @@
     background: #fff;
 }
 .container{
-    padding: 70px 40px;
+    margin-top: 2%;
 }
 .signUp-logIn-cont{
   display: flex;
@@ -106,9 +106,6 @@ input[name='first_name'], input[name='last_name']{
   margin-right: 10px;
 }
 
-/* select[name='gender']{
-    width:20%;
-} */
 input[name='course']{
     width: 80%;
     margin-right: 10px;
@@ -157,6 +154,17 @@ input[name='confirm-password']{
   display: flex;
   width: 50%;
 }
-.topnav a.active {
+.topnav-student a.active {
     background-color: #f4f4ef;
+}
+
+#flag{
+  width: 5%;
+  height: 15px;
+}
+#cybertekTeam-label{
+  font-size: 14px !important;
+}
+.cybertek-team{
+  padding-top: 2%;
 }

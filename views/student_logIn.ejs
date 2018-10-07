@@ -8,14 +8,18 @@
   <div>
     <div class="form-container">
       <div class="form-header">Sign In to your account</div>
-      <form method="post" action="profile">
+      <form id="logIn-form" method="post" action="profile">
           <div class = "email-section inputs">
             <input type="email" name="email" placeholder='Email*'>
           </div>
           <div class="inputs">
             <input type="password"  placeholder='Password*' name="password_logIn">
           </div>
-        <button id="sign-up-button" type="submit">Sign In</button>
+          <div class="cybertek-team">
+            <label id="cybertekTeam-label" for="flag">Cybertek Team</label>
+            <input id="flag" type="checkbox"  name="cybertekTeam">
+          </div>
+        <button id="sign-up-button" onclick="submitLogInForm()">Sign In</button>
       </form>
     </div>
   </div>

@@ -24,17 +24,20 @@ router.post('/profile',student_controller.student_logIn);
 // and form to add new project
 router.get('/student_profile',student_controller.student_profile);
 
-// Project into Student profile
+// Project in Student profile
 router.post('/profile/add_project', project_controller.project_create);
 router.get('/profile/remove_project',project_controller.remove_project);
 
-// Request into Student Profile
+// Request in Student Profile
 router.get('/student_request',request_controller.student_requests);
 router.post('/student_send_request',request_controller.student_send_request);
 
 // Old Friend
 router.get('/old_friends',oldFriend_controller.old_friends_sigIn);
 
-//Admin
-router.get('/admin',admin_controller.admin_log_in);
+//Admin LogIn. Authontication
+router.post('/admin',admin_controller.admin_logIn);
+// Main admin profile controller. Thats populate all request and oldFriends
+router.get('/admin_profile',admin_controller.admin_profile);
+
 module.exports = router;

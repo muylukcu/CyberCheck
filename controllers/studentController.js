@@ -2,9 +2,6 @@ var Student = require('../models/student');
 var Project = require('../models/project');
 var async = require('async');
 var cookieParser = require('cookie-parser');
-const { body,validationResult } = require('express-validator/check');
-const { sanitizeBody } = require('express-validator/filter');
-
 var jwt = require('jsonwebtoken');
 var bcrypt = require('bcryptjs');
 var config = require('../config');
@@ -53,18 +50,12 @@ exports.student_create_post = function(req, res, next){
               });
           }
 
-// Student Area - requests
-exports.students_requests = function(req,res,next){
-
-}
-
-
-//Studet Log In
+//Studet Log In land page
 exports.student_logIn_page = function(req, res, next) {
     res.render('student_logIn', { title: 'LogIn Student'});
 };
 
-
+//LogIn function for Student. Authontication
 exports.student_logIn = function(req, res) {
   // asign session to null if any exist
   req.session = null;
