@@ -4,6 +4,8 @@ body {
   font-size: 16px !important;
   font-family: 'Open Sans', sans-serif;
 /* -webkit-font-smoothing: antialiased; */
+  width: 100%;
+  height: 100%;
 }
 
 .logo{
@@ -13,8 +15,18 @@ body {
   padding-left: 0.8%;
 }
 
-.topnav-student, header {
+.topnav-student, header, footer {
   background: #fff;
   overflow: hidden;
   box-shadow: 0 5px 15px 0 rgba(46, 61, 73, 0.12);
+  width: auto;
+}
+
+ footer{
+  margin-top: 2%;
+}
+
+footer p{
+  padding-left: 0.8%;
+  font-size: 12px !important;
 }

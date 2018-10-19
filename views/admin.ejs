@@ -1,6 +1,111 @@
-<%- include('home_layout'); -%>
-<h1><%= title %></h1>
-<script src="javascripts/homepage/cliendSide_admin.js"></script>
-<p><%= admin %></p>
-<p><%= requests %></p>
-<p><%= oldFriends %></p>
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title><%= title %></title>
+  <link rel='stylesheet' href='/stylesheets/style.css' />
+  <link rel='stylesheet' href='/stylesheets/student/signUpLogIn.css' />
+  <link rel='stylesheet' href='/stylesheets/student/myProfile.css' />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700,400italic" as="style" onload="this.onload=null;this.rel='stylesheet'">
+  <link rel="stylesheet prefetch" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.1/css/font-awesome.min.css">
+</head>
+  <body>
+    <header class="topnav">
+      <a href="/">
+        <img class="logo" alt="Logo" src="/images/CYBERTEK_Best.png">
+      </a>
+    </header>
+    <div class="topnav-student">
+      <a id="profile-link" class="links active" href="/admin_profile">All Open Requests</a>
+      <!-- student requests is temprory since request href will be based on student id -->
+      <a id="students-request-link" class="links" href="/">Create new Old Friend</a>
+    </div>
+<!-- <p><%= admin.firstname %></p> -->
+<!-- <p><%= oldFriends %></p> -->
+<div class="main-section">
+<div class="my-profile">
+<%
+var index = 0;
+requests.forEach(function(request){
+  %>
+<div class="project profile">
+<table>
+<tr class = "row">
+  <td class="label">Student:</td>
+  <td><strong><%= request.student.firstname%>  <%= request.student.lastname%> </strong></td>
+</tr>
+<tr class = "row">
+  <td class="label"></td>
+  <td><%= request.student.study_course%>  Batch: <%= request.student.batch_number%> </td>
+</tr>
+<tr class = "row">
+  <td class="label">Student Email:</td>
+  <td><%= request.student.email%></td>
+</tr>
+<tr class = "row">
+  <td class="label">Reference From:</td>
+  <td><strong><%= request.project.company_name%></strong></td>
+</tr>
+<tr class = "row">
+  <td class="label">Recruiter:</td>
+  <td><%= request.recruiter_name%> (<%= request.recruiter_company%>)</td>
+</tr>
+<tr class="row">
+  <td class="label">Email:</td>
+  <td><%= request.recruiter_email %></td>
+</tr>
+<tr class="row">
+  <td class="label">Phone:</td>
+  <td><%= request.recruiter_number %></td>
+</tr>
+
+<tr class="row">
+  <td class="label">End Client:</td>
+  <td><%= request.end_client_company%></td>
+</tr>
+</table>
+<div class="track-request">
+  <hr class="hLine">
+  <% if(request.status === 'Open'){ %>
+    <div class="fa fa-check-circle" id = "check-process-active"><p class="status-text">Open</p></div>
+    <div class="fa fa-check-circle" id = "check-process"><p class="status-text">Assigned</p></div>
+    <div class="fa fa-check-circle" id = "check-process"><p class="status-text">Close</p></div>
+  <% }else if(request.status === 'Assigned'){ %>
+    <div class="fa fa-check-circle" id = "check-process"><p class="status-text">Open</p></div>
+    <div class="fa fa-check-circle" id = "check-process-active"><p class="status-text">Assigned</p></div>
+    <div class="fa fa-check-circle" id = "check-process"><p class="status-text">Close</p></div>
+  <% }else{%>
+    <div class="fa fa-check-circle" id = "check-process"><p class="status-text">Open</p></div>
+    <div class="fa fa-check-circle" id = "check-process"><p class="status-text">Assigned</p></div>
+    <div class="fa fa-check-circle" id = "check-process-active"><p class="status-text">Close</p></div>
+  <% } %>
+  <hr class="hLine">
+  <form action="/assigne_request" method="post">
+    <label for="select-oldFriend">Assigne to:</label>
+    <input type="hidden" name="request_id" value=<%-request.id%>>
+    <select name="oldFriends" class="select-oldFriend">
+      <option>Check available Old Friends first</option>
+    </select>
+    <button type="submit">Assigne</button>
+  </form>
+  <!-- <form action="#" id="av-oldFriend"> -->
+    <label for="select-oldFriend">Available Old Friends:</label>
+    <input type="hidden" class="request_id" value="<%-request.id%>">
+    <input type="hidden" class="end_client_company" value="<%-request.end_client_company%>">
+    <input type="hidden" class="request_rec_comp" value="<%-request.recruiter_company%>">
+    <button onclick=getOldFriends(<%=index%>)>Available Ref </button>
+  <!-- </form> -->
+
+</div>
+</div>
+
+<%
+  index++;
+ }); %>
+</div>
+</div>
+<script src="../javascripts/clientSideApp.js"></script>
+<script src="../javascripts/admin/admin.js"></script>
+<script src="/jquery/jquery.js"></script>
+</body>
+</html>

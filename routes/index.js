@@ -39,5 +39,9 @@ router.get('/old_friends',oldFriend_controller.old_friends_sigIn);
 router.post('/admin',admin_controller.admin_logIn);
 // Main admin profile controller. Thats populate all request and oldFriends
 router.get('/admin_profile',admin_controller.admin_profile);
+// Assigne request to oldFriend
+router.post('/assigne_request',admin_controller.assigne_request);
+// Available oldFriends
+router.get('/available_oldFriends',admin_controller.getAvailableOldfriends);
 
 module.exports = router;

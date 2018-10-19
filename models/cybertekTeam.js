@@ -8,7 +8,8 @@ var CybertekTeam = new Schema({
   email : {type:String, required:true, unique: true},
   phone_number: {type: String, required: true},
   password: {type:String, required: true},
-  role: {type:String, required:true,enum:['old friend','administrator']}
+  role: {type:String, required:true,enum:['old friend','administrator']},
+  amount_of_requests: {type:Number}
 });
 
 //Export model
