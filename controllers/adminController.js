@@ -123,5 +123,29 @@ exports.admin_profile = function(req, res){
         console.log("Error occure");
       }
     });
-
   }
+
+  exports.oldFriend_create_form = function(req, res, next) {
+      res.render('oldFriend_create', { title: 'Create Old Friend'});
+  };
+
+  exports.oldFriend_create_post = function(req, res, next){
+                console.log(req);
+                // asign session to null if any exist
+                var hashedPassword = bcrypt.hashSync(req.body.password, 8);
+                var oldFriend = new CybertekTeam(
+                    {
+                      firstname: req.body.first_name,
+                      lastname:req.body.last_name,
+                      email: req.body.email,
+                      password: hashedPassword,
+                      phone_number: req.body.phone_number,
+                      role: 'old friend',
+                      amount_of_requests : 0
+                    });
+
+                oldFriend.save(function (err,student) {
+                    if (err) return res.status(500).send("There was a problem registering the student.")
+                    res.status(200).redirect('/admin_profile');
+                });
+            }

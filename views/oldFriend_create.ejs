@@ -1,0 +1,39 @@
+<%- include('home_layout'); -%>
+<link rel='stylesheet' href='/stylesheets/adminProfile.css' />
+<div class="container">
+<div class="main-section">
+  <!-- <div class="signUp-logIn-cont">
+    <button class="signUp-logIn" onclick="location.href='/signUp';" id="sign-in">Sign Up</button>
+    <button class="signUp-logIn" onclick="location.href='/';"  id="log-in">Log In</button>
+  </div> -->
+  <div>
+    <div class="form-container">
+      <div class="form-header">Create an Account for Reference</div>
+      <div class="form-description">Reference will be responsible for taking phone calls from recruiters. Once request is assigned, phone number and email will send to Student as Reference information. Make sure all data correct</div>
+      <form id="signUp-form" method="post" action="/createOldFriend">
+         <div class="form-inputs">
+           <div class="inputs full-name">
+            <input  name="first_name" placeholder='First Name*'>
+            <input  name="last_name" placeholder='Last Name*'>
+          </div>
+          <div class = "inputs email">
+            <input type="email"  name="email" placeholder='Email*'>
+          </div>
+          <div class="inputs">
+            <input type="tel" placeholder="Reference Phone Number* ex: (774)5346272" name="phone_number">
+          </div>
+          <div class="inputs credentials">
+            <input type="password" placeholder='Password*' name="password">
+            <input type="password" name="confirm-password" placeholder='Confirm Password*'>
+          </div>
+        </div>
+        <button id="sign-up-button" onclick="submitCreateOldFriendForm()">Create</button>
+      </form>
+    </div>
+  </div>
+</div>
+</div>
+<script src="javascripts/homepage/clientSideStudent.js"></script>
+<footer style="position:absolute; bottom:0; width:100%">
+  <p>Made with <i class="fa fa-heart" style="color:red"></i> @Cybertek Team</p>
+</footer>

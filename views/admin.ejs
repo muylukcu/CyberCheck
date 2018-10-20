@@ -6,6 +6,7 @@
   <link rel='stylesheet' href='/stylesheets/style.css' />
   <link rel='stylesheet' href='/stylesheets/student/signUpLogIn.css' />
   <link rel='stylesheet' href='/stylesheets/student/myProfile.css' />
+  <link rel='stylesheet' href='/stylesheets/adminProfile.css' />
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700,400italic" as="style" onload="this.onload=null;this.rel='stylesheet'">
   <link rel="stylesheet prefetch" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.1/css/font-awesome.min.css">
 </head>
@@ -18,7 +19,7 @@
     <div class="topnav-student">
       <a id="profile-link" class="links active" href="/admin_profile">All Open Requests</a>
       <!-- student requests is temprory since request href will be based on student id -->
-      <a id="students-request-link" class="links" href="/">Create new Old Friend</a>
+      <a id="students-request-link" class="links" href="/lunch_createOldFriend_form">Create new Old Friend</a>
     </div>
 <!-- <p><%= admin.firstname %></p> -->
 <!-- <p><%= oldFriends %></p> -->
@@ -80,22 +81,19 @@ requests.forEach(function(request){
     <div class="fa fa-check-circle" id = "check-process-active"><p class="status-text">Close</p></div>
   <% } %>
   <hr class="hLine">
+  <button class="getAvRef-btn" onclick=getOldFriends(<%=index%>)>Check Available References </button>
   <form action="/assigne_request" method="post">
-    <label for="select-oldFriend">Assigne to:</label>
     <input type="hidden" name="request_id" value=<%-request.id%>>
-    <select name="oldFriends" class="select-oldFriend">
-      <option>Check available Old Friends first</option>
-    </select>
-    <button type="submit">Assigne</button>
+    <div class="select-oldFriend-section">
+      <select name="oldFriends" class="select-oldFriend">
+        <option>Check available Old Friends first</option>
+      </select>
+      <button class="assigne-btn" type="submit">Assigne</button>
+  </div>
   </form>
-  <!-- <form action="#" id="av-oldFriend"> -->
-    <label for="select-oldFriend">Available Old Friends:</label>
     <input type="hidden" class="request_id" value="<%-request.id%>">
     <input type="hidden" class="end_client_company" value="<%-request.end_client_company%>">
     <input type="hidden" class="request_rec_comp" value="<%-request.recruiter_company%>">
-    <button onclick=getOldFriends(<%=index%>)>Available Ref </button>
-  <!-- </form> -->
-
 </div>
 </div>
 

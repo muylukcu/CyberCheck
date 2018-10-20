@@ -40,3 +40,52 @@ function removeAllChildEl(element){
     element.removeChild(element.firstChild);
   }
 }
+
+function submitCreateOldFriendForm(){
+  var firstName = document.querySelector('[name="first_name"]');
+  var lastName = document.querySelector('[name="last_name"]');
+  var phone_number = document.querySelector('[name="phone_number"]');
+  var email = document.querySelector('[name="email"]');
+  var password = document.querySelector('[name="password"]');
+  var confirmPassword = document.querySelector('[name="confirm-password"]');
+  var flag = true;
+
+  if(firstName.value === ''){
+    firstName.setCustomValidity("First Name cannot be empty");
+    flag = false;
+  }else{
+    firstName.setCustomValidity("");
+  }
+
+  if(lastName.value === ''){
+    lastName.setCustomValidity("Last Name cannot be empty");
+    flag = false;
+  }else{
+    lastName.setCustomValidity("");
+  }
+
+  if(email.value === ''){
+    email.setCustomValidity("Email cannot be empty");
+    flag = false;
+  }else{
+    email.setCustomValidity("");
+  }
+
+  if(phone_number.value === ''){
+    phone_number.setCustomValidity("Phone number cannot be empty");
+    flag = false;
+  }else{
+    phone_number.setCustomValidity("");
+  }
+
+  if(password.value != confirmPassword.value){
+    confirmPassword.setCustomValidity("Passwords Don't Match");
+    flag = false;
+  }else{
+    confirmPassword.setCustomValidity("");
+  }
+
+  if(flag){
+    document.getElementById('signUp-form').submit();
+  }
+}

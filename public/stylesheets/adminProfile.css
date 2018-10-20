@@ -1,0 +1,32 @@
+.getAvRef-btn{
+  width: 100%;
+}
+.select-oldFriend{
+  font-size: 16px !important;
+  font-family: 'Open Sans', sans-serif;
+  margin-top: 20px;
+  margin-right: 1.5%;
+  width: 70%;
+}
+
+button{
+  height: 40px;
+  margin-top: 20px;
+}
+
+.assigne-btn{
+  width: 30%;
+}
+
+.select-oldFriend-section{
+  display: flex;
+}
+
+input[name='first_name']{
+  width:50%;
+
+}
+input[name='last_name']{
+  width:50%;
+  margin-right: 0px;
+}
