@@ -24,7 +24,7 @@ exports.student_requests = function(req,res,next){
              Student.findById(decoded.id,{password:0}).exec(callback);
            },
            requests: function(callback){
-             Request.find({student:decoded.id}).populate('project').exec(callback);
+             Request.find({student:decoded.id}).populate('project').populate('assigned_to').exec(callback);
            },
            projects: function(callback){
              Project.find({student:decoded.id}).exec(callback);

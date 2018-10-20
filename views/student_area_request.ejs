@@ -4,9 +4,6 @@
 <div class="main-section">
 <div class="my-profile">
 <h1>Your References</h1>
-<!-- <p><%= student %> </p>
-<p><%= projects %></p>
-<p><%= requests %></p> -->
 <% requests.forEach(function(request){ %>
 <div class="project profile">
 <table>
@@ -26,7 +23,6 @@
   <td class="label">Phone:</td>
   <td><%= request.recruiter_number %></td>
 </tr>
-
 <tr class="row">
   <td class="label">End Client:</td>
   <td><%= request.end_client_company%></td>
@@ -48,6 +44,27 @@
     <div class="fa fa-check-circle" id = "check-process-active"><p class="status-text">Close</p></div>
   <% } %>
   <hr class="hLine">
+  <% if(request.status === 'Assigned'){%>
+     <p><strong>Your Reference for this Project:</strong></p>
+     <table>
+       <tr class = "row">
+         <td class="label">Firstname:</td>
+         <td><%= request.assigned_to.firstname%></td>
+       </tr>
+       <tr class = "row">
+         <td class="label">Lastname:</td>
+         <td><%= request.assigned_to.lastname%></td>
+       </tr>
+       <tr class="row">
+         <td class="label">Email:</td>
+         <td><%= request.assigned_to.email%></td>
+       </tr>
+       <tr class="row">
+         <td class="label">Phone:</td>
+         <td><%= request.assigned_to.phone_number%></td>
+       </tr>
+     </table>
+  <% } %>
 </div>
 </div>
 <% }); %>
