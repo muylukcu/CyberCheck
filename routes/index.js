@@ -46,4 +46,6 @@ router.get('/available_oldFriends',admin_controller.getAvailableOldfriends);
 //createOldFriend
 router.get('/lunch_createOldFriend_form',admin_controller.oldFriend_create_form);
 router.post('/createOldFriend',admin_controller.oldFriend_create_post);
+//OldFriend Profile
+router.get('/oldFriend_profile',oldFriend_controller.oldFriend_profile);
 module.exports = router;

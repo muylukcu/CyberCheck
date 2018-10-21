@@ -42,6 +42,7 @@ function removeAllChildEl(element){
 }
 
 function submitCreateOldFriendForm(){
+  console.log('Here');
   var firstName = document.querySelector('[name="first_name"]');
   var lastName = document.querySelector('[name="last_name"]');
   var phone_number = document.querySelector('[name="phone_number"]');

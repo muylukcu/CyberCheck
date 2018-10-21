@@ -33,7 +33,15 @@ exports.admin_logIn = function(req, res) {
          console.log('Valid cookie session');
       }
 
-      res.status(200).redirect('/admin_profile');
+      console.log('Role: '+user.role);
+      if(user.role === 'administrator'){
+
+        res.status(200).redirect('/admin_profile');
+      }else{
+
+        res.status(200).redirect('/oldFriend_profile');
+      }
+
   });
 };
 
@@ -111,7 +119,6 @@ exports.admin_profile = function(req, res){
                       if(err){
                         availableCallback(err);
                       }else{
-                        console.log(availableOldFriends);
                         availableCallback(null);
                         res.send(availableOldFriends);
                       }
@@ -130,8 +137,6 @@ exports.admin_profile = function(req, res){
   };
 
   exports.oldFriend_create_post = function(req, res, next){
-                console.log(req);
-                // asign session to null if any exist
                 var hashedPassword = bcrypt.hashSync(req.body.password, 8);
                 var oldFriend = new CybertekTeam(
                     {
@@ -143,9 +148,8 @@ exports.admin_profile = function(req, res){
                       role: 'old friend',
                       amount_of_requests : 0
                     });
-
                 oldFriend.save(function (err,student) {
-                    if (err) return res.status(500).send("There was a problem registering the student.")
+                    if (err) return res.status(500).send("There was a problem registering the old friend.")
                     res.status(200).redirect('/admin_profile');
                 });
             }
