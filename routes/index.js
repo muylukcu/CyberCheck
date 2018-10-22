@@ -31,6 +31,7 @@ router.get('/profile/remove_project',project_controller.remove_project);
 // Request in Student Profile
 router.get('/student_request',request_controller.student_requests);
 router.post('/student_send_request',request_controller.student_send_request);
+router.get('/request/remove_request',request_controller.remove_request);
 
 // Old Friend
 router.get('/old_friends',oldFriend_controller.old_friends_sigIn);

@@ -73,3 +73,48 @@ function submitProjectForm(){
      document.querySelector('#add-project-form').submit();
    }
  }
+
+ function hideEndDate(){
+   var currentProject = document.querySelector('#current-project-checkbox');
+   var months = document.querySelector('[name="end_month"]');
+   var year = document.querySelector('[name="end_year"]');
+
+   var pSelForMonth = document.createElement('option');
+   pSelForMonth.setAttribute('value','Current');
+   pSelForMonth.textContent = 'Current';
+
+   var pSelForYear = document.createElement('option');
+   pSelForYear.setAttribute('value','Project');
+   pSelForYear.textContent = 'Project';
+
+   if(currentProject.checked){
+     removeAllChildEl(months);
+     removeAllChildEl(year);
+     months.appendChild(pSelForMonth);
+     year.appendChild(pSelForYear);
+   }else{
+     populateMonths();
+     populateYears();
+   }
+ }
+
+
+ function removeAllChildEl(element){
+   while (element.firstChild) {
+     element.removeChild(element.firstChild);
+   }
+ }
+
+ function populateMonths(){
+   var monthsEnd = document.querySelector('[name="end_month"]');
+   var year = document.querySelector('[name="end_year"]');
+   removeAllChildEl(monthsEnd);
+   removeAllChildEl(year);
+   var months = ['January','February','March','April','May','June','July','August','September','October','November','December'];
+   for(var month of months){
+     var optEl = document.createElement('option');
+     optEl.setAttribute('value',month);
+     optEl.textContent = month;
+     monthsEnd.appendChild(optEl);
+   }
+ }

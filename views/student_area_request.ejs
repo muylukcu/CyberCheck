@@ -6,6 +6,7 @@
 <h1>Your References</h1>
 <% requests.forEach(function(request){ %>
 <div class="project profile">
+      <a id="remove" class="fa fa-remove" href= '/request/remove_request?title=<%= title%>&requestId=<%=request.id%>'></a>
 <table>
 <tr class = "row">
   <td class="label">Reference From:</td>

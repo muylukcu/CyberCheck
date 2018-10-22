@@ -132,3 +132,13 @@ input[name='job_title'], input[name='end_date']{
   font-size: 16px !important;
   font-family: 'Open Sans', sans-serif;
 }
+
+#current-project{
+  display: flex;
+  margin-top: 2%;
+}
+#current-project-checkbox{
+  height: 18px;
+  width: 5%;
+  margin-right: 3%;
+}

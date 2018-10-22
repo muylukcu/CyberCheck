@@ -69,3 +69,32 @@ exports.student_requests = function(req,res,next){
       });
     });
    }
+
+   exports.remove_request = function(req,res,next){
+     var token = req.session.userId;
+     if (!token) return res.status(401).send({ auth: false, message: 'No token provided.' });
+
+       jwt.verify(token, config.secret, function(err, decoded) {
+          if (err) return res.status(500).send({ auth: false, message: 'Failed to authenticate token.' });
+              var title = req.query.title;
+              var requestId = req.query.requestId;
+              Request.deleteOne({"_id":requestId}).exec(function(err){
+                if (err) {
+                   return next(err);
+                 }
+                // Success - go to profile.
+                console.log(title);
+                if(title === 'Student Request'){
+                  res.redirect('/student_request');
+                }else if(title === 'Admin Profile'){
+                  res.redirect('/admin_profile');
+                }else if(title === 'Old Friend Profile'){
+                  res.redirect('/oldFriend_profile');
+                }else{
+                   return next(err);
+                }
+
+               });
+
+       });
+   }
