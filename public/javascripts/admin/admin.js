@@ -27,7 +27,7 @@ function renderOldFriendList(response,parentElement){
     for(var obj of response){
       let element = document.createElement('option');
       element.setAttribute('value',obj._id);
-      var newContent = document.createTextNode(obj.firstname+" "+obj.lastname);
+      var newContent = document.createTextNode(obj.firstname+" "+obj.lastname +", Assigned: "+obj.amount_of_requests+" requests");
       element.appendChild(newContent);
       docFragment.appendChild(element);
       console.log(element);
@@ -39,6 +39,32 @@ function removeAllChildEl(element){
   while (element.firstChild) {
     element.removeChild(element.firstChild);
   }
+}
+
+function createOldFriend(){
+  var firstName = $( "[name|='first_name']" ).value;
+  var lastName = $( "[name|='last_name']" ).value;
+  var phone_number = $( "[name|='phone_number']" ).value;
+  var email = $( "[name|='email']" ).value;
+  var password = $( "[name|='password']" ).value;
+  $.ajax({
+    url: "/createOldFriend",
+    type: "post", //send it through get method
+    contentType: 'application/json',
+    data: {
+      firstName: firstName,
+      lastName: lastName,
+      phone_number: phone_number,
+      email: email,
+      password: password
+    },
+    success: function(response) {
+      console.log("Created");
+    },
+      error: function(xhr) {
+      console.log('error');
+    }
+  });
 }
 
 function submitCreateOldFriendForm(){
@@ -87,6 +113,16 @@ function submitCreateOldFriendForm(){
   }
 
   if(flag){
-    document.getElementById('signUp-form').submit();
+    //document.getElementById('signUp-form').submit();
+    createOldFriend();
   }
+}
+
+function displaySuccessMessage(message){
+  var sSection =
+   '<div class="isa_success">\n'+
+    '<i class="fa fa-check"></i>\n'+
+     message + '\n'
+  '</div>\n';
+  $('.main-section').append(sSection);
 }

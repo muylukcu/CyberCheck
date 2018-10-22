@@ -63,7 +63,7 @@ exports.admin_profile = function(req, res){
              CybertekTeam.find({role:'old friend'}).exec(callback);
            },
            requests: function(callback){
-             Request.find({status:'Open'}).populate('student').populate('project').exec(callback);
+             Request.find({status:'Open',assigned_to:null}).populate('student').populate('project').exec(callback);
            }
          }, function(err,results){
            if (err) { return next(err); }
@@ -79,6 +79,23 @@ exports.admin_profile = function(req, res){
 
 
   exports.assigne_request = function(req,res,next){
+
+    CybertekTeam.findById(req.body.oldFriends,function(err, oldFriend){
+      if(!oldFriend){
+              return next(err);
+      }else{
+        var amount = oldFriend.amount_of_requests;
+        oldFriend.amount_of_requests = amount + 1;
+
+        oldFriend.save(function(error){
+          if(error){
+            return next(error);
+          }
+          console.log('here');
+        });
+      }
+    });
+
     Request.findById(req.body.request_id,function(err,request){
       if(!request){
               return next(err);
@@ -90,11 +107,12 @@ exports.admin_profile = function(req, res){
             return next(err);
           }else{
             console.log("Request updated");
+            res.redirect('/admin_profile');
           }
-        })
+        });
       }
     });
-    res.status(200).redirect('/admin_profile');
+
   }
 
   exports.getAvailableOldfriends = function(req,res,next){
@@ -150,6 +168,6 @@ exports.admin_profile = function(req, res){
                     });
                 oldFriend.save(function (err,student) {
                     if (err) return res.status(500).send("There was a problem registering the old friend.")
-                    res.status(200).redirect('/admin_profile');
+                    res.redirect('/lunch_createOldFriend_form');
                 });
             }

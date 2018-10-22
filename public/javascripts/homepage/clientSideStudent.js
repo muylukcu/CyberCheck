@@ -5,7 +5,7 @@
 function submitLogInForm(){
   var form = document.getElementById('logIn-form');
   var email = document.querySelector('[name="email"]');
-  var password = document.querySelector('[name="password"]');
+  var password = document.querySelector('[name="password_logIn"]');
   var cybertekTeamFlag = document.querySelector('#flag').checked;
   var flag = true;
 
@@ -14,6 +14,13 @@ function submitLogInForm(){
     flag = false;
   }else{
     email.setCustomValidity("");
+  }
+
+  if(password.value === ''){
+    password.setCustomValidity("Password cannot be empty");
+    flag = false;
+  }else{
+    password.setCustomValidity("");
   }
 
 
@@ -70,6 +77,15 @@ function submitSignInForm(){
   }else{
     batchNumber.setCustomValidity("");
   }
+
+  if(password.value === ''){
+    password.setCustomValidity("Batch Number cannot be empty");
+    flag = false;
+  }else{
+    password.setCustomValidity("");
+  }
+
+
 
   if(password.value != confirmPassword.value){
     confirmPassword.setCustomValidity("Passwords Don't Match");

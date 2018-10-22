@@ -9,7 +9,7 @@ var CybertekTeam = new Schema({
   phone_number: {type: String, required: true},
   password: {type:String, required: true},
   role: {type:String, required:true,enum:['old friend','administrator']},
-  amount_of_requests: {type:Number}
+  amount_of_requests: {type:Number, default: 0}
 });
 
 //Export model
