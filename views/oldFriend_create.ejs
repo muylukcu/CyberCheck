@@ -11,7 +11,7 @@
     <div class="form-container">
       <div class="form-header">Create an Account for Reference</div>
       <div class="form-description">Reference will be responsible for taking phone calls from recruiters. Once request is assigned, phone number and email will send to Student as Reference information. Make sure all data correct</div>
-      <form id="signUp-form" method="post" action="/createOldFriend">
+      <form id="signUp-form" method="post">
          <div class="form-inputs">
            <div class="inputs full-name">
             <input  name="first_name" placeholder='First Name*'>
@@ -28,14 +28,15 @@
             <input type="password" name="confirm-password" placeholder='Confirm Password*'>
           </div>
         </div>
-        <button id="sign-up-button" onclick="submitCreateOldFriendForm()">Create</button>
+
       </form>
+      <button id="sign-up-button" onclick="submitCreateOldFriendForm()">Create</button>
     </div>
   </div>
 </div>
 </div>
 <script src="javascripts/homepage/clientSideStudent.js"></script>
 <script src="../javascripts/admin/admin.js"></script>
-<footer style="position:absolute; bottom:0;width: 99%;">
+<footer>
   <p>Made with <i class="fa fa-heart" style="color:red"></i> @Cybertek Team</p>
 </footer>

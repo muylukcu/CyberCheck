@@ -5,7 +5,7 @@ function getOldFriends(index){
   var selOldFList = document.querySelectorAll('.select-oldFriend');
   $.ajax({
   url: "/available_oldFriends",
-  type: "get", //send it through get method
+  type: "post", //send it through get method
   contentType: 'application/json',
   data: {
     requestId: requestId[index].value,
@@ -30,7 +30,6 @@ function renderOldFriendList(response,parentElement){
       var newContent = document.createTextNode(obj.firstname+" "+obj.lastname +", Assigned: "+obj.amount_of_requests+" requests");
       element.appendChild(newContent);
       docFragment.appendChild(element);
-      console.log(element);
     }
     parentElement.appendChild(docFragment);
 }
@@ -42,33 +41,29 @@ function removeAllChildEl(element){
 }
 
 function createOldFriend(){
-  var firstName = $( "[name|='first_name']" ).value;
-  var lastName = $( "[name|='last_name']" ).value;
-  var phone_number = $( "[name|='phone_number']" ).value;
-  var email = $( "[name|='email']" ).value;
-  var password = $( "[name|='password']" ).value;
-  $.ajax({
-    url: "/createOldFriend",
-    type: "post", //send it through get method
-    contentType: 'application/json',
-    data: {
-      firstName: firstName,
-      lastName: lastName,
+    var firstName = $('[name|="first_name"]').val();
+    var lastName = $('[name|="last_name"]').val();
+    var phone_number = $('[name|="phone_number"]').val();
+    var email = $('[name|="email"]').val();
+    var password = $('[name|="password"]').val();
+    $.post("/createOldFriend",
+    {
+      first_name: firstName,
+      last_name: lastName,
       phone_number: phone_number,
       email: email,
       password: password
     },
-    success: function(response) {
-      console.log("Created");
-    },
-      error: function(xhr) {
-      console.log('error');
-    }
-  });
-}
-
+    function(data, status){
+        console.log(data);
+        if(data === 'There was a problem registering the old friend.'){
+          displayErrorMessage(firstName +" "+lastName+" wasn't created");
+        }else{
+          displaySuccessMessage(data.firstname+" "+data.lastname +" successfully created");
+        }
+    });
+  }
 function submitCreateOldFriendForm(){
-  console.log('Here');
   var firstName = document.querySelector('[name="first_name"]');
   var lastName = document.querySelector('[name="last_name"]');
   var phone_number = document.querySelector('[name="phone_number"]');
@@ -113,7 +108,6 @@ function submitCreateOldFriendForm(){
   }
 
   if(flag){
-    //document.getElementById('signUp-form').submit();
     createOldFriend();
   }
 }
@@ -122,7 +116,15 @@ function displaySuccessMessage(message){
   var sSection =
    '<div class="isa_success">\n'+
     '<i class="fa fa-check"></i>\n'+
-     message + '\n'
-  '</div>\n';
-  $('.main-section').append(sSection);
+     message + '\n' +
+  '</div>';
+  $('.main-section').prepend(sSection);
+}
+function displayErrorMessage(message){
+  var sSection =
+   '<div class="isa_error">\n'+
+    '<i class="fa fa-times-circle"></i>\n'+
+     message + '\n' +
+  '</div>';
+  $('.main-section').prepend(sSection);
 }

@@ -166,8 +166,9 @@ exports.admin_profile = function(req, res){
                       role: 'old friend',
                       amount_of_requests : 0
                     });
-                oldFriend.save(function (err,student) {
-                    if (err) return res.status(500).send("There was a problem registering the old friend.")
-                    res.redirect('/lunch_createOldFriend_form');
+                oldFriend.save(function (err) {
+                    if (err) return res.send("There was a problem registering the old friend.");
+                    //  res.redirect('/lunch_createOldFriend_form');
+                    res.status(201).send(oldFriend);
                 });
             }
