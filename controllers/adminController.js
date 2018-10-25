@@ -79,8 +79,10 @@ exports.admin_profile = function(req, res){
 
 
   exports.assigne_request = function(req,res,next){
+    const oldFriendId = req.query.oldFriendId;
+    const requestId = req.query.requestId;
 
-    CybertekTeam.findById(req.body.oldFriends,function(err, oldFriend){
+    CybertekTeam.findById(oldFriendId,function(err, oldFriend){
       if(!oldFriend){
               return next(err);
       }else{
@@ -90,34 +92,33 @@ exports.admin_profile = function(req, res){
         oldFriend.save(function(error){
           if(error){
             return next(error);
+          }else{
+              console.log('Old Friend Updated successfully');
           }
-          console.log('here');
         });
       }
     });
 
-    Request.findById(req.body.request_id,function(err,request){
+    Request.findById(requestId,function(err,request){
       if(!request){
               return next(err);
       }else{
-        request.assigned_to = req.body.oldFriends;
+        request.assigned_to = oldFriendId;
         request.status = 'Assigned';
         request.save(function(error){
           if(error){
             return next(err);
           }else{
             console.log("Request updated");
-            res.redirect('/admin_profile');
+            res.send("Assigned Successfully");
           }
         });
       }
     });
 
-  }
+  };
 
-  exports.getAvailableOldfriends = function(req,res,next){
-    var requestData = req.query
-    var availableRef;
+  exports.getAvailableOldfriends = function(req,res){
     async.waterfall([
       function getNotAvailableOldF(notAvailCallback){
                Request.find({end_client_company:req.query.endClient,recruiter_company:req.query.recComp,
@@ -130,7 +131,7 @@ exports.admin_profile = function(req, res){
                   });
       },
       function getAvailableOldF(notAvailableOldFriends,availableCallback){
-                 var ids = notAvailableOldFriends.map((val, i, arr) => {
+                 var ids = notAvailableOldFriends.map((val) => {
                  return val.assigned_to;
                  });
                  CybertekTeam.find({'_id': { $nin: ids}, role:'old friend'},function(err,availableOldFriends){
