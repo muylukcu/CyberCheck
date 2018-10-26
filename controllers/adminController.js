@@ -81,41 +81,49 @@ exports.admin_profile = function(req, res){
   exports.assigne_request = function(req,res,next){
     const oldFriendId = req.query.oldFriendId;
     const requestId = req.query.requestId;
+    async.parallel({
+        oldFriend: function(callback){
+            CybertekTeam.findById(oldFriendId,function(err, oldFriend){
+                if(!oldFriend){
+                    return next(err);
+                }else{
+                    var amount = oldFriend.amount_of_requests;
+                    oldFriend.amount_of_requests = amount + 1;
 
-    CybertekTeam.findById(oldFriendId,function(err, oldFriend){
-      if(!oldFriend){
-              return next(err);
-      }else{
-        var amount = oldFriend.amount_of_requests;
-        oldFriend.amount_of_requests = amount + 1;
-
-        oldFriend.save(function(error){
-          if(error){
-            return next(error);
-          }else{
-              console.log('Old Friend Updated successfully');
-          }
-        });
-      }
-    });
-
-    Request.findById(requestId,function(err,request){
-      if(!request){
-              return next(err);
-      }else{
-        request.assigned_to = oldFriendId;
-        request.status = 'Assigned';
-        request.save(function(error){
-          if(error){
+                    oldFriend.save(function(error){
+                        if(error){
+                            return next(error);
+                        }else{
+                            console.log('Old Friend Updated successfully');
+                        }
+                    });
+                }
+            }).exec(callback);
+        },
+        request: function(callback){
+            Request.findById(requestId,function(err,request){
+                if(!request){
+                    return next(err);
+                }else{
+                    request.assigned_to = oldFriendId;
+                    request.status = 'Assigned';
+                    request.save(function(error){
+                        if(error){
+                            return next(err);
+                        }else{
+                            console.log("Request updated");
+                        }
+                    });
+                }
+            }).exec(callback);
+        }
+    },function(err,results){
+        if(results.oldFriend != null && results.request != null){
+            res.send(results);
+        }else{
             return next(err);
-          }else{
-            console.log("Request updated");
-            res.send("Assigned Successfully");
-          }
-        });
-      }
+        }
     });
-
   };
 
   exports.getAvailableOldfriends = function(req,res){

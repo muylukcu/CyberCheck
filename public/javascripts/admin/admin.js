@@ -1,16 +1,17 @@
 function getOldFriends(index) {
-    var requestId = $(".track-request"+index+" > .request-id");
-    var requestEndClient = $(".track-request"+index+" > .end_client_company");
-    var requestRecComp = $(".track-request"+index+" > .request_rec_comp");
-    var selOldFList =  document.querySelector('.track-request'+index+' > div > select');
+    var requestId = $(".track-request" + index + " > .request-id");
+    var requestEndClient = $(".track-request" + index + " > .end_client_company");
+    var requestRecComp = $(".track-request" + index + " > .request_rec_comp");
+    var selOldFList = document.querySelector('.track-request' + index + ' > div > select');
+
     $.ajax({
         url: "/available_oldFriends",
         type: "get", //send it through get method
         contentType: 'application/json',
         data: {
-            requestId: requestId.value,
-            endClient: requestEndClient.value,
-            recComp: requestRecComp.value
+            requestId: requestId.val(),
+            endClient: requestEndClient.val(),
+            recComp: requestRecComp.val()
         },
         success: function (response) {
             removeAllChildEl(selOldFList);
@@ -31,7 +32,6 @@ function renderOldFriendList(response, parentElement) {
         element.appendChild(newContent);
         docFragment.appendChild(element);
     }
-    console.log('Here');
     parentElement.appendChild(docFragment);
 }
 
@@ -43,25 +43,25 @@ function removeAllChildEl(element) {
 
 function createOldFriend() {
     var mainDiv = $('.main-section');
-    var firstName = $('[name|="first_name"]').val();
-    var lastName = $('[name|="last_name"]').val();
-    var phone_number = $('[name|="phone_number"]').val();
-    var email = $('[name|="email"]').val();
-    var password = $('[name|="password"]').val();
+    var firstName = $('[name|="first_name"]');
+    var lastName = $('[name|="last_name"]');
+    var phone_number = $('[name|="phone_number"]');
+    var email = $('[name|="email"]');
+    var password = $('[name|="password"]');
     $.post("/createOldFriend",
         {
-            first_name: firstName,
-            last_name: lastName,
-            phone_number: phone_number,
-            email: email,
-            password: password
+            first_name: firstName.val(),
+            last_name: lastName.val(),
+            phone_number: phone_number.val(),
+            email: email.val(),
+            password: password.val()
         },
         function (data, status) {
-            console.log(data);
             if (data === 'There was a problem registering the old friend.') {
-                displayErrorMessage(mainDiv,firstName + " " + lastName + " wasn't created");
+                displayErrorMessage(mainDiv, firstName + " " + lastName + " wasn't created");
             } else {
-                displaySuccessMessage(mainDiv,data.firstname + " " + data.lastname + " successfully created");
+                displaySuccessMessage(mainDiv, data.firstname + " " + data.lastname + " successfully created");
+                $('#signUp-form').trigger('reset');
             }
         });
 }
@@ -69,12 +69,10 @@ function createOldFriend() {
 function assigneRequest(index) {
     const mainDiv = $('.my-profile');
 
-    const requestId = $(".track-request"+index+" > .request-id");
-    const oldFriendId = $(".track-request"+index+" > div > select");
-    const requestDiv = $('.reqIndex'+index);
+    const requestId = $(".track-request" + index + " > .request-id");
+    const oldFriendId = $(".track-request" + index + " > div > select");
+    const requestDiv = $('.reqIndex' + index);
 
-    console.log(requestId.val());
-    console.log(oldFriendId.val());
     $.ajax({
         url: "/assigne_request",
         type: "get",
@@ -85,10 +83,10 @@ function assigneRequest(index) {
         },
         success: function (response) {
             requestDiv.remove();
-            displaySuccessMessage(mainDiv,`Request ${response}`);
+            displaySuccessMessage(mainDiv, `Request assigned to ${response.oldFriend.firstname} ${response.oldFriend.lastname}`);
         },
         error: function (xhr) {
-            displayErrorMessage(mainDiv,'Error! First choose Reference to assign');
+            displayErrorMessage(mainDiv, 'Error! First choose Reference to assign');
         }
     });
 }
@@ -142,29 +140,3 @@ function submitCreateOldFriendForm() {
     }
 }
 
-function displaySuccessMessage(element,message) {
-    var sSection =
-        '<div class="isa_success">\n' +
-        '<i class="fa fa-check"></i>\n' +
-        message + '\n' +
-        '</div>';
-    element.prepend(sSection);
-    const mesEl = $('.isa_success');
-    window.setTimeout(function(){
-        mesEl.remove();
-    },3000);
-}
-
-function displayErrorMessage(element,message) {
-    var sSection =
-        '<div class="isa_error">\n' +
-        '<i class="fa fa-times-circle"></i>\n' +
-        message + '\n' +
-        '</div>';
-    element.prepend(sSection);
-    const mesEl = $('.isa_error');
-
-    window.setTimeout(function(){
-        mesEl.remove();
-    },3000);
-}

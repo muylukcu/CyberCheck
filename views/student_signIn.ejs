@@ -1,43 +1,45 @@
 <%- include('home_layout'); -%>
 <div class="container">
-<div class="main-section">
-  <div class="signUp-logIn-cont">
-    <button class="signUp-logIn" onclick="location.href='/signUp';" id="sign-in">Sign Up</button>
-    <button class="signUp-logIn" onclick="location.href='/';"  id="log-in">Log In</button>
-  </div>
-  <div>
-    <div class="form-container">
-      <div class="form-header">Create your student account</div>
-      <div class="form-description">Your student account information will be use for requesting references. Make sure all data correct</div>
-      <form id="signUp-form" method="post" action="">
-         <div class="form-inputs">
-           <div class="inputs full-name">
-            <input  name="first_name" placeholder='First Name*'>
-            <input  name="last_name" placeholder='Last Name*'>
-            <select name="gender" id="gender-select">
-              <option value="M">Male</option>
-              <option value="F">Female</option>
-            </select>
-          </div>
-          <div class = "inputs email">
-            <input type="email"  name="email" placeholder='Email*'>
-          </div>
-          <div class="inputs study-course">
-            <input placeholder='Study Course* ex: SDET' name="course">
-            <input type="number" min="1" name="batch_number" placeholder='Batch#*'>
-          </div>
-          <div class="inputs credentials">
-            <input type="password" placeholder='Password*' name="password">
-            <input type="password" name="confirm-password" placeholder='Confirm Password*'>
-          </div>
+    <div class="main-section">
+        <div class="signUp-logIn-cont">
+            <button class="signUp-logIn" onclick="location.href='/signUp';" id="sign-in">Sign Up</button>
+            <button class="signUp-logIn" onclick="location.href='/';" id="log-in">Log In</button>
         </div>
-        <button id="sign-up-button" onclick="submitSignInForm()">Sign Up</button>
-      </form>
+        <div>
+            <div class="form-container">
+                <div class="form-header">Create your student account</div>
+                <div class="form-description">Your student account information will be use for requesting references.
+                    Make sure all data correct
+                </div>
+                <form id="signUp-form" method="post" action="">
+                    <div class="form-inputs">
+                        <div class="inputs full-name">
+                            <input name="first_name" placeholder='First Name*'>
+                            <input name="last_name" placeholder='Last Name*'>
+                            <select name="gender" id="gender-select">
+                                <option value="M">Male</option>
+                                <option value="F">Female</option>
+                            </select>
+                        </div>
+                        <div class="inputs email">
+                            <input type="email" name="email" placeholder='Email*'>
+                        </div>
+                        <div class="inputs study-course">
+                            <input placeholder='Study Course* ex: SDET' name="course">
+                            <input type="number" min="1" name="batch_number" placeholder='Batch#*'>
+                        </div>
+                        <div class="inputs credentials">
+                            <input type="password" placeholder='Password*' name="password">
+                            <input type="password" name="confirm-password" placeholder='Confirm Password*'>
+                        </div>
+                    </div>
+                    <button id="sign-up-button" onclick="submitSignInForm()">Sign Up</button>
+                </form>
+            </div>
+        </div>
     </div>
-  </div>
-</div>
 </div>
 <script src="javascripts/homepage/clientSideStudent.js"></script>
 <footer style="position:absolute; bottom:0;width: 99%;">
-  <p>Made with <i class="fa fa-heart" style="color:red"></i> @Cybertek Team</p>
+    <p>Made with <i class="fa fa-heart" style="color:red"></i> @Cybertek Team</p>
 </footer>

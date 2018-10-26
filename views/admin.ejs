@@ -22,16 +22,20 @@
     <!-- student requests is temprory since request href will be based on student id -->
     <a class="links" href="/lunch_createOldFriend_form">Create new Old Friend</a>
 </div>
-<!-- <p><%= admin.firstname %></p> -->
+
 <div class="main-section">
     <div class="my-profile">
+        <div class="profile">
+            <h2><%= admin.firstname %> <%= admin.lastname %></h2>
+            <h4 class="course-text"><%= admin.role %> </h4>
+        </div>
         <%
         var index = 0;
         requests.forEach(function(request){
         %>
             <div class="project profile reqIndex<%= index %>">
-                <a id="remove" class="fa fa-remove"
-                   href='/request/remove_request?title=<%= title %>&requestId=<%= request.id %>'></a>
+                <a id="remove" class="fa fa-remove" onclick="removeRequest('<%= request.id %>','<%= index %>')"
+                ></a>
                 <table>
                     <tr class="row">
                         <td class="label">Student:</td>
@@ -68,12 +72,12 @@
                 <div class="track-request<%= index %>">
                     <hr class="hLine">
                     <button class="getAvRef-btn" onclick=getOldFriends(<%= index %>)>Check Available References</button>
-                        <div class="select-oldFriend-section">
-                            <select name="old-friend" class="select-oldFriend">
-                                <option>Check available Old Friends first</option>
-                            </select>
-                            <button class="assigne-btn" onclick="assigneRequest(<%= index %>)">Assigne</button>
-                        </div>
+                    <div class="select-oldFriend-section">
+                        <select name="old-friend" class="select-oldFriend">
+                            <option>Check available Old Friends first</option>
+                        </select>
+                        <button class="assigne-btn" onclick="assigneRequest(<%= index %>)">Assigne</button>
+                    </div>
                     <input type="hidden" class="request-id" value="<%- request.id %>">
                     <input type="hidden" class="end_client_company" value="<%- request.end_client_company %>">
                     <input type="hidden" class="request_rec_comp" value="<%- request.recruiter_company %>">
@@ -87,14 +91,14 @@
 <script src="../javascripts/clientSideApp.js"></script>
 <script src="../javascripts/admin/admin.js"></script>
 <script src="/jquery/jquery.js"></script>
-<% if(requests.length > 1){ %>
-    <footer>
-        <p>Made with <i class="fa fa-heart" style="color:red"></i> @Cybertek Team</p>
-    </footer>
-<% }else{ %>
-    <footer style="position:absolute; bottom:0;width: 99%;">
-        <p>Made with <i class="fa fa-heart" style="color:red"></i> @Cybertek Team</p>
-    </footer>
-<% } %>
+<!--<% if(requests.length > 1){ %>-->
+    <!--<footer>-->
+        <!--<p>Made with <i class="fa fa-heart" style="color:red"></i> @Cybertek Team</p>-->
+    <!--</footer>-->
+<!--<% }else{ %>-->
+    <!--<footer style="position:absolute; bottom:0;width: 99%;">-->
+        <!--<p>Made with <i class="fa fa-heart" style="color:red"></i> @Cybertek Team</p>-->
+    <!--</footer>-->
+<!--<% } %>-->
 </body>
 </html>

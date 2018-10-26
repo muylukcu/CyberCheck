@@ -1,42 +1,46 @@
 <%- include('home_layout'); -%>
-<link rel='stylesheet' href='/stylesheets/adminProfile.css' />
-<link rel='stylesheet' href='/stylesheets/student/myProfile.css' />
+<link rel='stylesheet' href='/stylesheets/adminProfile.css'/>
+<link rel='stylesheet' href='/stylesheets/student/myProfile.css'/>
 <div class="container">
-  <div class="topnav-student">
-    <a class="links" href="/admin_profile">All Open Requests</a>
-    <a class="links active" href="/lunch_createOldFriend_form">Create new Old Friend</a>
-  </div>
-<div class="main-section">
-  <div>
-    <div class="form-container">
-      <div class="form-header">Create an Account for Reference</div>
-      <div class="form-description">Reference will be responsible for taking phone calls from recruiters. Once request is assigned, phone number and email will send to Student as Reference information. Make sure all data correct</div>
-      <form id="signUp-form" method="post">
-         <div class="form-inputs">
-           <div class="inputs full-name">
-            <input  name="first_name" placeholder='First Name*'>
-            <input  name="last_name" placeholder='Last Name*'>
-          </div>
-          <div class = "inputs email">
-            <input type="email"  name="email" placeholder='Email*'>
-          </div>
-          <div class="inputs">
-            <input type="tel" placeholder="Reference Phone Number* ex: (774)5346272" name="phone_number">
-          </div>
-          <div class="inputs credentials">
-            <input type="password" placeholder='Password*' name="password">
-            <input type="password" name="confirm-password" placeholder='Confirm Password*'>
-          </div>
-        </div>
-
-      </form>
-      <button id="sign-up-button" onclick="submitCreateOldFriendForm()">Create</button>
+    <div class="topnav-student">
+        <a class="links" href="/admin_profile">All Open Requests</a>
+        <a class="links active" href="/lunch_createOldFriend_form">Create new Old Friend</a>
     </div>
-  </div>
-</div>
+    <div class="main-section">
+        <div>
+            <div class="form-container">
+                <div class="form-header">Create an Account for Reference</div>
+                <div class="form-description">Reference will be responsible for taking phone calls from recruiters. Once
+                    request is assigned, phone number and email will send to Student as Reference information. Make sure
+                    all data correct
+                </div>
+                <form id="signUp-form" method="post">
+                    <div class="form-inputs">
+                        <div class="inputs full-name">
+                            <input name="first_name" placeholder='First Name*'>
+                            <input name="last_name" placeholder='Last Name*'>
+                        </div>
+                        <div class="inputs email">
+                            <input type="email" name="email" placeholder='Email*'>
+                        </div>
+                        <div class="inputs">
+                            <input type="tel" placeholder="Reference Phone Number* ex: (774)5346272"
+                                   name="phone_number">
+                        </div>
+                        <div class="inputs credentials">
+                            <input type="password" placeholder='Password*' name="password">
+                            <input type="password" name="confirm-password" placeholder='Confirm Password*'>
+                        </div>
+                    </div>
+
+                </form>
+                <button id="sign-up-button" onclick="submitCreateOldFriendForm()">Create</button>
+            </div>
+        </div>
+    </div>
 </div>
 <script src="javascripts/homepage/clientSideStudent.js"></script>
 <script src="../javascripts/admin/admin.js"></script>
 <footer>
-  <p>Made with <i class="fa fa-heart" style="color:red"></i> @Cybertek Team</p>
+    <p>Made with <i class="fa fa-heart" style="color:red"></i> @Cybertek Team</p>
 </footer>

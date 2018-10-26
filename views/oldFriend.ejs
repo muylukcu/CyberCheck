@@ -1,84 +1,92 @@
 <!doctype html>
 <html lang="en">
 <head>
-  <meta charset="utf-8">
-  <title><%= title %></title>
-  <link rel='stylesheet' href='/stylesheets/style.css' />
-  <link rel='stylesheet' href='/stylesheets/student/signUpLogIn.css' />
-  <link rel='stylesheet' href='/stylesheets/student/myProfile.css' />
-  <link rel='stylesheet' href='/stylesheets/adminProfile.css' />
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700,400italic" as="style" onload="this.onload=null;this.rel='stylesheet'">
-  <link rel="stylesheet prefetch" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.1/css/font-awesome.min.css">
+    <meta charset="utf-8">
+    <title><%= title %></title>
+    <link rel='stylesheet' href='/stylesheets/style.css'/>
+    <link rel='stylesheet' href='/stylesheets/student/signUpLogIn.css'/>
+    <link rel='stylesheet' href='/stylesheets/student/myProfile.css'/>
+    <link rel='stylesheet' href='/stylesheets/adminProfile.css'/>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700,400italic" as="style"
+          onload="this.onload=null;this.rel='stylesheet'">
+    <link rel="stylesheet prefetch" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.1/css/font-awesome.min.css">
 </head>
-  <body>
-    <header class="topnav">
-      <a href="/">
+<body>
+<header class="topnav">
+    <a href="/">
         <img class="logo" alt="Logo" src="/images/CYBERTEK_Best.png">
-      </a>
-    </header>
+    </a>
+</header>
 <div class="main-section">
-<div class="my-profile">
-<%
-var index = 0;
-requests.forEach(function(request){
-  %>
-<div class="project profile">
-   <a id="remove" class="fa fa-remove" href= '/request/remove_request?title=<%= title%>&requestId=<%=request.id%>'></a>
-<table>
-<tr class = "row">
-  <td class="label">Student:</td>
-  <td><strong><%= request.student.firstname%>  <%= request.student.lastname%></strong> (<%= request.student.study_course%>  Batch: <%= request.student.batch_number%>)</td>
-</tr>
-<tr class = "row">
-  <td class="label">Student email:</td>
-  <td><%= request.student.email%></td>
-</tr>
-<tr class = "row">
-  <td class="label">Company name:</td>
-  <td><strong><%= request.project.company_name%></strong></td>
-</tr>
-<tr class = "row">
-  <td class="label">Company location:</td>
-  <td><%= request.project.company_location%></td>
-</tr>
-<tr class = "row">
-  <td class="label">Job title:</td>
-  <td><%= request.project.job_title%></td>
-</tr>
-<tr class = "row">
-  <td class="label">Job type:</td>
-  <td><%= request.project.job_type%></td>
-</tr>
-<tr class = "row">
-  <td class="label">Team size:</td>
-  <td><%= request.project.team_size%></td>
-</tr>
-<tr class = "row">
-  <td class="label">Duration:</td>
-  <td>from <%= request.project.start_date%> to <%= request.project.end_date%></td>
-</tr>
-</table>
-<div class="track-request">
-  <hr class="hLine">
-</div>
-</div>
-<%
-  index++;
- }); %>
-</div>
+    <div class="my-profile">
+        <div class="profile">
+            <h2><%= oldFriend.firstname %> <%= oldFriend.lastname %></h2>
+            <h4 class="course-text"><%= oldFriend.role %> </h4>
+        </div>
+        <%
+        var index = 0;
+        requests.forEach(function(request){
+        %>
+            <div class="project profile reqIndex<%= index %>">
+                <a id="remove" class="fa fa-remove" onclick="removeRequest('<%= request.id %>','<%= index %>')"
+                ></a>
+                <table>
+                    <tr class="row">
+                        <td class="label">Student:</td>
+                        <td><strong><%= request.student.firstname %>  <%= request.student.lastname %></strong>
+                            (<%= request.student.study_course %> Batch: <%= request.student.batch_number %>)
+                        </td>
+                    </tr>
+                    <tr class="row">
+                        <td class="label">Student email:</td>
+                        <td><%= request.student.email %></td>
+                    </tr>
+                    <tr class="row">
+                        <td class="label">Company name:</td>
+                        <td><strong><%= request.project.company_name %></strong></td>
+                    </tr>
+                    <tr class="row">
+                        <td class="label">Company location:</td>
+                        <td><%= request.project.company_location %></td>
+                    </tr>
+                    <tr class="row">
+                        <td class="label">Job title:</td>
+                        <td><%= request.project.job_title %></td>
+                    </tr>
+                    <tr class="row">
+                        <td class="label">Job type:</td>
+                        <td><%= request.project.job_type %></td>
+                    </tr>
+                    <tr class="row">
+                        <td class="label">Team size:</td>
+                        <td><%= request.project.team_size %></td>
+                    </tr>
+                    <tr class="row">
+                        <td class="label">Duration:</td>
+                        <td>from <%= request.project.start_date %> to <%= request.project.end_date %></td>
+                    </tr>
+                </table>
+                <div class="track-request">
+                    <hr class="hLine">
+                </div>
+            </div>
+        <%
+            index++;
+        }); %>
+    </div>
 </div>
 <script src="../javascripts/clientSideApp.js"></script>
 <script src="../javascripts/admin/admin.js"></script>
 <script src="/jquery/jquery.js"></script>
 
 <% if(requests.length > 1){ %>
-<footer>
-  <p>Made with <i class="fa fa-heart" style="color:red"></i> @Cybertek Team</p>
-</footer>
-<%}else{%>
-<footer style="position:absolute; bottom:0;width: 99%;">
-  <p>Made with <i class="fa fa-heart" style="color:red"></i> @Cybertek Team</p>
-</footer>
-<%}%>
+    <footer>
+        <p>Made with <i class="fa fa-heart" style="color:red"></i> @Cybertek Team</p>
+    </footer>
+<% }else{ %>
+    <footer style="position:absolute; bottom:0;width: 99%;">
+        <p>Made with <i class="fa fa-heart" style="color:red"></i> @Cybertek Team</p>
+    </footer>
+<% } %>
 </body>
 </html>

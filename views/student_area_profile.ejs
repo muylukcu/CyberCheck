@@ -1,122 +1,127 @@
 <%- include('students_layout'); -%>
 <div class="main-section">
-<div class="my-profile">
-  <div class="profile">
-    <h2><%= student.firstname %> <%= student.lastname %></h2>
-    <h4 class="course-text"><%= student.study_course %> Batch: <%= student.batch_number %> </h4>
-  </div>
-    <% projects.forEach(function(project){ %>
-  <div class="project profile">
-    <a id="remove" class="fa fa-remove" href= '/profile/remove_project?company_name=<%=project.company_name %>'></a>
-    <table>
-    <tr class = "row">
-      <td class="label">Company:</td>
-      <td><strong><%= project.company_name%></strong></td>
-    </tr>
-    <tr class = "row">
-      <td class="label">Title:</td>
-      <td><%= project.job_title%> (<%= project.job_type %>)</td>
-    </tr>
-    <tr class="row">
-      <td class="label">Address:</td>
-      <td><%= project.company_location%></td>
-    </tr>
+    <div class="my-profile">
+        <div class="profile">
+            <h2><%= student.firstname %> <%= student.lastname %></h2>
+            <h4 class="course-text"><%= student.study_course %> Batch: <%= student.batch_number %> </h4>
+        </div>
+        <% projects.forEach(function(project){ %>
+        <div class="project profile">
+            <a id="remove" class="fa fa-remove"
+               href='/profile/remove_project?company_name=<%= project.company_name %>'></a>
+            <table>
+                <tr class="row">
+                    <td class="label">Company:</td>
+                    <td><strong><%= project.company_name %></strong></td>
+                </tr>
+                <tr class="row">
+                    <td class="label">Title:</td>
+                    <td><%= project.job_title %> (<%= project.job_type %>)</td>
+                </tr>
+                <tr class="row">
+                    <td class="label">Address:</td>
+                    <td><%= project.company_location %></td>
+                </tr>
 
-    <tr class="row">
-      <td class="label">Team:</td>
-      <td><%= project.team_size%></td>
-    </tr>
+                <tr class="row">
+                    <td class="label">Team:</td>
+                    <td><%= project.team_size %></td>
+                </tr>
 
-    <tr class="row">
-      <td class="label">Duration:</td>
-      <td><%= project.start_date %> - <%= project.end_date%></td>
-    </tr>
-  </table>
-  </div>
-   <% }); %>
+                <tr class="row">
+                    <td class="label">Duration:</td>
+                    <td><%= project.start_date %> - <%= project.end_date %></td>
+                </tr>
+            </table>
+        </div>
+        <% }); %>
 
-<div class="add-project-form">
-  <div class="form-container">
-    <div class="form-header">Add you projects from your resume</div>
-    <div class="form-description">First you need to add into your profile all projects after that you will be able to send requests. Your project information will be used for requesting references. Make sure all data correct!</div>
-    <form id="add-project-form" method="post" action="/profile/add_project">
-       <div class="form-inputs">
-         <div class="inputs">
-          <input  name="company_name" placeholder='Company Name*'>
+        <div class="add-project-form">
+            <div class="form-container">
+                <div class="form-header">Add you projects from your resume</div>
+                <div class="form-description">First you need to add into your profile all projects after that you will
+                    be able to send requests. Your project information will be used for requesting references. Make sure
+                    all data correct!
+                </div>
+                <form id="add-project-form" method="post" action="/profile/add_project">
+                    <div class="form-inputs">
+                        <div class="inputs">
+                            <input name="company_name" placeholder='Company Name*'>
+                        </div>
+                        <div class="inputs">
+                            <input name="company_location" placeholder='Company Address*'>
+                        </div>
+                        <div class="inputs job">
+                            <!-- <input name="job_type" placeholder='Job Type* ex: Contructor'> -->
+                            <select name="job_type" id="select-job-type">
+                                <option value="contructor">contractor</option>
+                                <option value="full-time employee">full-time employee</option>
+                            </select>
+                            <input name="job_title" placeholder='Job Title*'>
+                        </div>
+                        <div class="inputs">
+                            <input name="team_size" placeholder='Team Size* ex: 8 total (3 Dev, 3 Test, 1 BA, 1 PO)'>
+                        </div>
+                        <div class="inputs dates">
+                            <div id="sDate">
+                                <label for="start_date">Start Date</label>
+                            </div>
+                            <div id="eDate">
+                                <label class="labels" for="end_date">End Date</label>
+                            </div>
+                        </div>
+                        <div class="inputs dates">
+                            <div class="section-date">
+                                <select class="month" name="start_month">
+                                    <option value="January">January</option>
+                                    <option value="February">February</option>
+                                    <option value="March">March</option>
+                                    <option value="April">April</option>
+                                    <option value="May">May</option>
+                                    <option value="June">June</option>
+                                    <option value="July">July</option>
+                                    <option value="August">August</option>
+                                    <option value="September">September</option>
+                                    <option value="October">October</option>
+                                    <option value="November">November</option>
+                                    <option value="December">December</option>
+                                </select>
+                                <select class="year" name="start_year" style="margin-right: 5px;"></select>
+                            </div>
+                            <div class="section-date">
+                                <select class="month" name="end_month" style="margin-left: 4px;">
+                                    <option value="January">January</option>
+                                    <option value="February">February</option>
+                                    <option value="March">March</option>
+                                    <option value="April">April</option>
+                                    <option value="May">May</option>
+                                    <option value="June">June</option>
+                                    <option value="July">July</option>
+                                    <option value="August">August</option>
+                                    <option value="September">September</option>
+                                    <option value="October">October</option>
+                                    <option value="November">November</option>
+                                    <option value="December">December</option>
+                                </select>
+                                <select class="year" name="end_year"></select>
+                            </div>
+                        </div>
+                        <div id="current-project">
+                            <input id="current-project-checkbox" type="checkbox" value="current_project"
+                                   onclick="hideEndDate()">
+                            <label for="current-project">My Current Project</label>
+                        </div>
+                    </div>
+                    <button id="sign-up-button" onclick="submitProjectForm()">Add Project</button>
+                </form>
+            </div>
         </div>
-        <div class = "inputs">
-          <input name="company_location" placeholder='Company Address*'>
+        <div id="display-form-button">
+            <button class="project-add-button" onclick="addOneMoreProject()">Add one more project</button>
         </div>
-        <div class="inputs job">
-          <!-- <input name="job_type" placeholder='Job Type* ex: Contructor'> -->
-          <select name="job_type" id="select-job-type">
-            <option value="contructor">contractor</option>
-            <option value="full-time employee">full-time employee</option>
-          </select>
-          <input name="job_title" placeholder='Job Title*'>
-        </div>
-        <div class="inputs">
-          <input name="team_size" placeholder='Team Size* ex: 8 total (3 Dev, 3 Test, 1 BA, 1 PO)'>
-        </div>
-        <div class="inputs dates">
-          <div id="sDate">
-            <label  for="start_date">Start Date</label>
-          </div>
-          <div id="eDate">
-            <label  class="labels" for="end_date">End Date</label>
-          </div>
-        </div>
-        <div class="inputs dates">
-          <div class="section-date">
-             <select class="month" name="start_month">
-               <option value="January">January</option>
-               <option value="February">February</option>
-               <option value="March">March</option>
-               <option value="April">April</option>
-               <option value="May">May</option>
-               <option value="June">June</option>
-               <option value="July">July</option>
-               <option value="August">August</option>
-               <option value="September">September</option>
-               <option value="October">October</option>
-               <option value="November">November</option>
-               <option value="December">December</option>
-             </select>
-             <select class="year" name="start_year" style="margin-right: 5px;"></select>
-          </div>
-          <div class="section-date">
-             <select class="month" name="end_month" style="margin-left: 4px;">
-                <option value="January">January</option>
-                <option value="February">February</option>
-                <option value="March">March</option>
-                <option value="April">April</option>
-                <option value="May">May</option>
-                <option value="June">June</option>
-                <option value="July">July</option>
-                <option value="August">August</option>
-                <option value="September">September</option>
-                <option value="October">October</option>
-                <option value="November">November</option>
-                <option value="December">December</option>
-             </select>
-             <select class="year" name="end_year"></select>
-          </div>
-        </div>
-        <div id="current-project">
-         <input id="current-project-checkbox" type="checkbox" value="current_project" onclick="hideEndDate()">
-         <label for="current-project">My Current Project</label>
-        </div>
-      </div>
-      <button id="sign-up-button" onclick="submitProjectForm()">Add Project</button>
-    </form>
-  </div>
-</div>
-<div id="display-form-button">
-  <button class="project-add-button" onclick="addOneMoreProject()">Add one more project</button>
-</div>
-</div>
+    </div>
 </div>
 <script src="../javascripts/student/student-area-profile.js"></script>
 <footer>
-  <p>Made with <i class="fa fa-heart" style="color:red"></i> @Cybertek Team</p>
+    <p>Made with <i class="fa fa-heart" style="color:red"></i> @Cybertek Team</p>
 </footer>

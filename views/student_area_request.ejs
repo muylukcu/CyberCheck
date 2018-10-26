@@ -2,116 +2,126 @@
 <script src="../javascripts/student/student-request-profile.js"></script>
 
 <div class="main-section">
-<div class="my-profile">
-<h1>Your References</h1>
-<% requests.forEach(function(request){ %>
-<div class="project profile">
-      <a id="remove" class="fa fa-remove" href= '/request/remove_request?title=<%= title%>&requestId=<%=request.id%>'></a>
-<table>
-<tr class = "row">
-  <td class="label">Reference From:</td>
-  <td><strong><%= request.project.company_name%></strong></td>
-</tr>
-<tr class = "row">
-  <td class="label">Recruiter:</td>
-  <td><%= request.recruiter_name%> (<%= request.recruiter_company%>)</td>
-</tr>
-<tr class="row">
-  <td class="label">Email:</td>
-  <td><%= request.recruiter_email %></td>
-</tr>
-<tr class="row">
-  <td class="label">Phone:</td>
-  <td><%= request.recruiter_number %></td>
-</tr>
-<tr class="row">
-  <td class="label">End Client:</td>
-  <td><%= request.end_client_company%></td>
-</tr>
-</table>
-<div class="track-request">
-  <hr class="hLine">
-  <% if(request.status === 'Open'){ %>
-    <div class="fa fa-check-circle" id = "check-process-active"><p class="status-text">Open</p></div>
-    <div class="fa fa-check-circle" id = "check-process"><p class="status-text">Assigned</p></div>
-    <div class="fa fa-check-circle" id = "check-process"><p class="status-text">Close</p></div>
-  <% }else if(request.status === 'Assigned'){ %>
-    <div class="fa fa-check-circle" id = "check-process"><p class="status-text">Open</p></div>
-    <div class="fa fa-check-circle" id = "check-process-active"><p class="status-text">Assigned</p></div>
-    <div class="fa fa-check-circle" id = "check-process"><p class="status-text">Close</p></div>
-  <% }else{%>
-    <div class="fa fa-check-circle" id = "check-process"><p class="status-text">Open</p></div>
-    <div class="fa fa-check-circle" id = "check-process"><p class="status-text">Assigned</p></div>
-    <div class="fa fa-check-circle" id = "check-process-active"><p class="status-text">Close</p></div>
-  <% } %>
-  <hr class="hLine">
-  <% if(request.status === 'Assigned'){%>
-     <p><strong>Your Reference for this Project:</strong></p>
-     <table>
-       <tr class = "row">
-         <td class="label">Firstname:</td>
-         <td><%= request.assigned_to.firstname%></td>
-       </tr>
-       <tr class = "row">
-         <td class="label">Lastname:</td>
-         <td><%= request.assigned_to.lastname%></td>
-       </tr>
-       <tr class="row">
-         <td class="label">Email:</td>
-         <td><%= request.assigned_to.email%></td>
-       </tr>
-       <tr class="row">
-         <td class="label">Phone:</td>
-         <td><%= request.assigned_to.phone_number%></td>
-       </tr>
-     </table>
-  <% } %>
-</div>
-</div>
-<% }); %>
-<div class="add-project-form">
-  <div class="form-container">
-    <div class="form-header">Request Reference from your projects</div>
-    <div class="form-description">First you need to add into your profile all projects. After that you will be able to send requests. To request reference you need fill form bellow. Make sure all data is correct.</div>
-    <form id="open-reference-form" method="post" action="/student_send_request">
-       <div class="form-inputs">
-         <div class="inputs">
-           <div id="sDate" style="padding-bottom: 4px;">
-             <label for="request-for-project">Reference from:</label>
-           </div>
-           <select name="project" id="request-for-project">
-             <% projects.forEach(function(project){ %>
-               <option value= <%- project.id %>><%= project.company_name%></option>
-             <% }); %>
-           </select>
-         </div>
-         <div class="inputs ceruiter-name">
-            <div class="firstname" id="rec-firstname">
-              <input  name="recruiter_first_name" placeholder='Recruiter First Name*'>
+    <div class="my-profile">
+        <h1>Your References</h1>
+        <%
+        var index = 0;
+        requests.forEach(function(request){
+        %>
+            <div class="project profile reqIndex<%= index %>">
+                <a id="remove" class="fa fa-remove" onclick="removeRequest('<%= request.id %>','<%= index %>')"></a>
+                <table>
+                    <tr class="row">
+                        <td class="label">Reference From:</td>
+                        <td><strong><%= request.project.company_name %></strong></td>
+                    </tr>
+                    <tr class="row">
+                        <td class="label">Recruiter:</td>
+                        <td><%= request.recruiter_name %> (<%= request.recruiter_company %>)</td>
+                    </tr>
+                    <tr class="row">
+                        <td class="label">Email:</td>
+                        <td><%= request.recruiter_email %></td>
+                    </tr>
+                    <tr class="row">
+                        <td class="label">Phone:</td>
+                        <td><%= request.recruiter_number %></td>
+                    </tr>
+                    <tr class="row">
+                        <td class="label">End Client:</td>
+                        <td><%= request.end_client_company %></td>
+                    </tr>
+                </table>
+                <div class="track-request">
+                    <hr class="hLine">
+                    <% if(request.status === 'Open'){ %>
+                        <div class="fa fa-check-circle" id="check-process-active"><p class="status-text">Open</p></div>
+                        <div class="fa fa-check-circle" id="check-process"><p class="status-text">Assigned</p></div>
+                        <div class="fa fa-check-circle" id="check-process"><p class="status-text">Close</p></div>
+                    <% }else if(request.status === 'Assigned'){ %>
+                        <div class="fa fa-check-circle" id="check-process"><p class="status-text">Open</p></div>
+                        <div class="fa fa-check-circle" id="check-process-active"><p class="status-text">Assigned</p>
+                        </div>
+                        <div class="fa fa-check-circle" id="check-process"><p class="status-text">Close</p></div>
+                    <% }else{ %>
+                        <div class="fa fa-check-circle" id="check-process"><p class="status-text">Open</p></div>
+                        <div class="fa fa-check-circle" id="check-process"><p class="status-text">Assigned</p></div>
+                        <div class="fa fa-check-circle" id="check-process-active"><p class="status-text">Close</p></div>
+                    <% } %>
+                    <hr class="hLine">
+                    <% if(request.status === 'Assigned'){ %>
+                        <p><strong>Your Reference for this Project:</strong></p>
+                        <table>
+                            <tr class="row">
+                                <td class="label">Firstname:</td>
+                                <td><%= request.assigned_to.firstname %></td>
+                            </tr>
+                            <tr class="row">
+                                <td class="label">Lastname:</td>
+                                <td><%= request.assigned_to.lastname %></td>
+                            </tr>
+                            <tr class="row">
+                                <td class="label">Email:</td>
+                                <td><%= request.assigned_to.email %></td>
+                            </tr>
+                            <tr class="row">
+                                <td class="label">Phone:</td>
+                                <td><%= request.assigned_to.phone_number %></td>
+                            </tr>
+                        </table>
+                    <% } %>
+                </div>
             </div>
-            <div class="lastname" id="rec-lastname">
-              <input  name="recruiter_last_name" placeholder='Recruiter Last Name*'>
+        <%
+            index++;
+        }); %>
+        <div class="add-project-form">
+            <div class="form-container">
+                <div class="form-header">Request Reference from your projects</div>
+                <div class="form-description">First you need to add into your profile all projects. After that you will
+                    be able to send requests. To request reference you need fill form bellow. Make sure all data is
+                    correct.
+                </div>
+                <form id="open-reference-form" method="post" action="/student_send_request">
+                    <div class="form-inputs">
+                        <div class="inputs">
+                            <div id="sDate" style="padding-bottom: 4px;">
+                                <label for="request-for-project">Reference from:</label>
+                            </div>
+                            <select name="project" id="request-for-project">
+                                <% projects.forEach(function(project){ %>
+                                    <option value= <%- project.id %>><%= project.company_name %></option>
+                                <% }); %>
+                            </select>
+                        </div>
+                        <div class="inputs ceruiter-name">
+                            <div class="firstname" id="rec-firstname">
+                                <input name="recruiter_first_name" placeholder='Recruiter First Name*'>
+                            </div>
+                            <div class="lastname" id="rec-lastname">
+                                <input name="recruiter_last_name" placeholder='Recruiter Last Name*'>
+                            </div>
+                        </div>
+                        <div class="inputs">
+                            <input name="recruiter_email" type="email" placeholder='Recruiter Email*'>
+                        </div>
+                        <div class="inputs">
+                            <input name="recruiter_number" type="tel"
+                                   placeholder='Recruiter Phone Number* ex: (774)5346272'>
+                        </div>
+                        <div class="inputs">
+                            <input name="recruiter_company" placeholder='Recruiter Company*'>
+                        </div>
+                        <div class="inputs">
+                            <input name="end_client_company" placeholder='End Client Company*'>
+                        </div>
+                    </div>
+                    <button id="sign-up-button" onclick="submitReferenceForm()">Open Request</button>
+                </form>
             </div>
         </div>
-        <div class = "inputs">
-          <input name="recruiter_email" type="email" placeholder='Recruiter Email*'>
-        </div>
-        <div class = "inputs">
-          <input name="recruiter_number" type="tel" placeholder='Recruiter Phone Number* ex: (774)5346272'>
-        </div>
-        <div class="inputs">
-          <input name="recruiter_company" placeholder='Recruiter Company*'>
-        </div>
-        <div class="inputs">
-          <input name="end_client_company" placeholder='End Client Company*'>
-        </div>
-      </div>
-      <button id="sign-up-button" onclick="submitReferenceForm()">Open Request</button>
-    </form>
-  </div>
-</div>
-</div>
+    </div>
 </div>
 <footer>
-  <p>Made with <i class="fa fa-heart" style="color:red"></i> @Cybertek Team</p>
+    <p>Made with <i class="fa fa-heart" style="color:red"></i> @Cybertek Team</p>
 </footer>

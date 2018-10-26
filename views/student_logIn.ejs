@@ -1,31 +1,31 @@
 <%- include('home_layout'); -%>
 <div class="container">
-<div class="main-section">
-  <div class="signUp-logIn-cont">
-    <button class="signUp-logIn" onclick="location.href='/signUp';" id="sign-in">Sign Up</button>
-    <button class="signUp-logIn" onclick="location.href='/';"  id="log-in">Log In</button>
-  </div>
-  <div>
-    <div class="form-container">
-      <div class="form-header">Sign In to your account</div>
-      <form id="logIn-form" method="post" action="profile">
-          <div class = "email-section inputs">
-            <input type="email" name="email" placeholder='Email*'>
-          </div>
-          <div class="inputs">
-            <input type="password"  placeholder='Password*' name="password_logIn">
-          </div>
-          <div class="cybertek-team">
-            <label id="cybertekTeam-label" for="flag">Cybertek Team</label>
-            <input id="flag" type="checkbox"  name="cybertekTeam">
-          </div>
-        <button id="sign-up-button" onclick="submitLogInForm()">Sign In</button>
-      </form>
+    <div class="main-section">
+        <div class="signUp-logIn-cont">
+            <button class="signUp-logIn" onclick="location.href='/signUp';" id="sign-in">Sign Up</button>
+            <button class="signUp-logIn" onclick="location.href='/';" id="log-in">Log In</button>
+        </div>
+        <div>
+            <div class="form-container">
+                <div class="form-header">Sign In to your account</div>
+                <form id="logIn-form" method="post" action="profile">
+                    <div class="email-section inputs">
+                        <input type="email" name="email" placeholder='Email*'>
+                    </div>
+                    <div class="inputs">
+                        <input type="password" placeholder='Password*' name="password_logIn">
+                    </div>
+                    <div class="cybertek-team">
+                        <label id="cybertekTeam-label" for="flag">Cybertek Team</label>
+                        <input id="flag" type="checkbox" name="cybertekTeam">
+                    </div>
+                    <button id="sign-up-button" onclick="submitLogInForm()">Sign In</button>
+                </form>
+            </div>
+        </div>
     </div>
-  </div>
-</div>
 </div>
 <script src="javascripts/homepage/clientSideStudent.js"></script>
 <footer style="position:absolute; bottom:0;width: 99%;">
-  <p>Made with <i class="fa fa-heart" style="color:red"></i> @Cybertek Team</p>
+    <p>Made with <i class="fa fa-heart" style="color:red"></i> @Cybertek Team</p>
 </footer>
